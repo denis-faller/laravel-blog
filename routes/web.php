@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Как переименовать пространство имен - https://github.com/laravel/framework/issues/29810
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', 'HomeController', ['only' => [
+    'index'
+]]);

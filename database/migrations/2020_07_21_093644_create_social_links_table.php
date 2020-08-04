@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Blog\Models\Site;
 
 class CreateSocialLinksTable extends Migration
 {
@@ -15,6 +16,7 @@ class CreateSocialLinksTable extends Migration
     {
         Schema::create('social_links', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('site_id');
             $table->foreign('site_id')->references('id')->on('sites');
             $table->string('name', 255);
             $table->string('href', 255);
@@ -23,11 +25,11 @@ class CreateSocialLinksTable extends Migration
         });
         
         $date = Carbon\Carbon::now();
-        DB::table('social_links')->insert(
-            ['site_id' => 1, 'name' => 'Facebook', 'href' => 'https://www.facebook.com/', 'sort' => 100, 'created_at' => $date, 'updated_at' => $date],
-            ['site_id' => 1, 'name' => 'Twitter', 'href' => 'https://twitter.com/', 'sort' => 200, 'created_at' => $date, 'updated_at' => $date],  
-            ['site_id' => 1, 'name' => 'Instagram', 'href' => 'https://www.instagram.com/', 'sort' => 300, 'created_at' => $date, 'updated_at' => $date]
-        );
+        DB::table('social_links')->insert([
+            ['site_id' => Site::MAIN_SITE_ID, 'name' => 'facebook', 'href' => 'https://www.facebook.com/', 'sort' => 100, 'created_at' => $date, 'updated_at' => $date],
+            ['site_id' => Site::MAIN_SITE_ID, 'name' => 'twitter', 'href' => 'https://twitter.com/', 'sort' => 200, 'created_at' => $date, 'updated_at' => $date],  
+            ['site_id' => Site::MAIN_SITE_ID, 'name' => 'instagram', 'href' => 'https://www.instagram.com/', 'sort' => 300, 'created_at' => $date, 'updated_at' => $date]
+        ]);
     }
 
     /**
