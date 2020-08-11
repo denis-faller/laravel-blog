@@ -16,4 +16,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/', 'HomeController', ['only' => [
     'index'
-]]);
+    ],
+    'names' => [
+        'index' => 'home.index'
+    ]
+]);
+
+Route::resource('/recent-posts/', 'RecentPostsController', ['only' => [
+    'index'
+    ],
+    'names' => [
+        'index' => 'recent.Posts.index'
+    ]
+]);
+
+Route::resource('/about/', 'AboutPageController', ['only' => [
+    'index'
+    ],
+    'names' => [
+        'index' => 'about.index'
+    ]
+]);

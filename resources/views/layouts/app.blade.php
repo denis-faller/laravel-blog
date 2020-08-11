@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@if(isset($content)){{$content->name}}@else {{$title}}@endif - {{$site->name}}</title>
+    <title>@if(isset($content)){{$content->name}}@else {{$title}}@endif | {{$site->name}}</title>
     <meta name="description" content="@if(isset($content)){{$content->description}}@else{{$description}}@endif">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,7 +37,7 @@
       <div class="container-fluid">
         <div class="row align-items-center">
           <div class="col-4 site-logo">
-            <a href="index.html" class="text-black h2 mb-0">Mini Blog</a>
+            <a href="/" class="text-black h2 mb-0">Mini Blog</a>
           </div>
           <div class="col-8 text-right">
             <nav class="site-navigation" role="navigation">

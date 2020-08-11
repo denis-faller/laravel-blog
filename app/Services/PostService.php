@@ -20,22 +20,31 @@ class PostService extends BaseService
    
     /**
     * Возвращает посты, которые должны быть выведены на главной
+    * @param int $paginate
     * @return Blog\Post
     */  
-    public function getPostsForMainPage()
+    public function getPostsForMainPage($paginate)
     {
-        return $this->repo->getPostsForMainPage();
+       $this->repo->setFilterBy('main_page');
+       $this->repo->setFilterValue(1);
+        
+        return $this->repo->getPaginatePosts($paginate)->all();
     }
     
+
     /**
-    * Возвращает посты, отсортированные по дате
+    * Возвращает пагинатор для постов
+    * @param int $paginate
     * @return Blog\Post
     */  
-    public function getRecentPosts()
+    public function getPaginatePosts($paginate)
     {
+       $this->repo->setFilterBy();
+       $this->repo->setFilterValue(); 
+        
        $this->repo->setSortBy('publish_time');
        $this->repo->setSortOrder('desc');
        
-       return $this->repo;
+       return $this->repo->getPaginatePosts($paginate);
     }
 }

@@ -1212,7 +1212,7 @@ h1, h2, h3, h4, h5,
 
 .search-form-wrap {
   position: absolute;
-  width: 100%;
+  width: 98%!important;
   background: #fff;
   z-index: 1;
   visibility: hidden;

@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
         
         $date = Carbon\Carbon::now();
         DB::table('users')->insert(
-            ['name' => 'Admin', 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.', 'img' => '/resources/images/person_2.jpg', 'email' => 'richsiteru@gmail.com', 'password' => Hash::make('password'), 'remember_token' => Str::random(60), 'created_at' => $date, 'updated_at' => $date]
+            ['name' => 'Admin', 'description' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.', 'img' => '/assets/images/person_2.jpg', 'email' => 'richsiteru@gmail.com', 'password' => Hash::make('password'), 'remember_token' => Str::random(60), 'created_at' => $date, 'updated_at' => $date]
         );
     }
 

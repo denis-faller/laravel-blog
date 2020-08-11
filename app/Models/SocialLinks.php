@@ -8,5 +8,5 @@ class SocialLinks extends Model
 {
     protected $table = 'social_links';
     
-    protected $fillable = array('name', 'href', 'sort');
+    protected $fillable = array();
 }

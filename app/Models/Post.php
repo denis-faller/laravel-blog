@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    protected $fillable = array('name', 'url', 'text');
+    protected $fillable = array();
     
     /**
     * Теги поста
@@ -22,5 +22,13 @@ class Post extends Model
     public function categories()
     {
       return $this->belongsTo('Blog\Models\Category', 'category_id');
+    }
+    
+    /**
+    * Автор поста
+    */
+    public function author()
+    {
+      return $this->belongsTo('Blog\Models\User', 'author_id');
     }
 }

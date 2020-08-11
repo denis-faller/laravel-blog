@@ -9,5 +9,5 @@ class Site extends Model
     // id основного сайта
     const MAIN_SITE_ID = 1;
    
-    protected $fillable = array('name', 'footer_text');
+    protected $fillable = array();
 }

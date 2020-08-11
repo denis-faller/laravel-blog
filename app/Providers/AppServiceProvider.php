@@ -18,6 +18,12 @@ use Blog\Models\SocialLinks;
 use Blog\Services\PostService;
 use Blog\Repositories\PostRepository;
 use Blog\Models\Post;
+use Blog\Services\AboutPageService;
+use Blog\Repositories\AboutPageRepository;
+use Blog\Models\AboutPage;
+use Blog\Services\StaffService;
+use Blog\Repositories\StaffRepository;
+use Blog\Models\Staff;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -57,6 +63,14 @@ class AppServiceProvider extends ServiceProvider
         
         $this->app->singleton(PostService::class, function () {
             return new PostService(new PostRepository(new Post()));
+        });
+        
+        $this->app->singleton(AboutPageService::class, function () {
+            return new AboutPageService(new AboutPageRepository(new AboutPage()));
+        });
+        
+       $this->app->singleton(StaffService::class, function () {
+            return new StaffService(new StaffRepository(new Staff()));
         });
         
         $serviceSite = app(SiteService::class);

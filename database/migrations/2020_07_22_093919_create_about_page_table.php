@@ -32,9 +32,9 @@ class CreateAboutPageTable extends Migration
         $date = Carbon\Carbon::now();
         DB::table('about_page')->insert(
             [   'site_id' => Site::MAIN_SITE_ID, 
-                'title_text' => 'h1 class="">About Us</h1>
+                'title_text' => '<h1 class="">About Us</h1>
               <p class="lead mb-4 text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, adipisci?</p>', 
-                'title_img' => '/resources/images/img_4.jpg',
+                'title_img' => '/assets/images/img_4.jpg',
                 'after_title_text' => '<h2>We Love To Explore</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea voluptate odit corrupti vitae cupiditate explicabo, soluta quibusdam necessitatibus, provident reprehenderit, dolorem saepe non eligendi possimus autem repellendus nesciunt, est deleniti libero recusandae officiis. Voluptatibus quisquam voluptatum expedita recusandae architecto quibusdam.</p>
             <ul class="ul-check list-unstyled success">
@@ -42,12 +42,12 @@ class CreateAboutPageTable extends Migration
               <li>Dolorem saepe non eligendi possimus</li>
               <li>Voluptate odit corrupti vitae</li>
             </ul>',
-                'after_title_img' => '/resources/images/img_1.jpg',
+                'after_title_img' => '/assets/images/img_1.jpg',
                 'team_title_text' => ' <h2>Meet The Team</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus commodi blanditiis, soluta magnam atque laborum ex qui recusandae</p>',
                'after_team_text' => '<h2>Learn From Us</h2>
             <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea voluptate odit corrupti vitae cupiditate explicabo, soluta quibusdam necessitatibus, provident reprehenderit, dolorem saepe non eligendi possimus autem repellendus nesciunt, est deleniti libero recusandae officiis. Voluptatibus quisquam voluptatum expedita recusandae architecto quibusdam.</p>',
-                'after_team_img' => '/resources/images/img_1.jpg',
+                'after_team_img' => '/assets/images/img_1.jpg',
                 'created_at' => $date, 
                 'updated_at' => $date]
         );

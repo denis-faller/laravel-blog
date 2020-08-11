@@ -4,6 +4,7 @@ namespace Blog\Repositories;
 
 use Blog\Models\Post;
 use Blog\Repositories\Traits\Sortable;
+use Blog\Repositories\Traits\Filterable;
 
 /** 
  * Класс репозитория поста
@@ -11,6 +12,8 @@ use Blog\Repositories\Traits\Sortable;
 class PostRepository extends BaseRepository
 {
     use Sortable;
+    use Filterable;
+    
     /**
     * Экземпляр модели поста
     * @var Post
@@ -25,13 +28,15 @@ class PostRepository extends BaseRepository
     {
         $this->model = $post;
     }
+
     
     /**
-    * Возвращает посты, которые должны быть выведены на главной
+    * Возвращает пагинатор для постов
+    * @param int $paginate
     * @return Blog\Post
     */  
-    public function getPostsForMainPage()
+    public function getPaginatePosts($paginate)
     {
-        return $this->model->where('main_page', 1)->take(9)->get();
-    }
+        return $this->paginated($paginate);
+    } 
 }

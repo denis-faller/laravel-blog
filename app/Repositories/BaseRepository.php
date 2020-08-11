@@ -21,12 +21,25 @@ abstract class BaseRepository
     protected $sortOrder = 'asc';
     
     /**
+    * Свойство, хранящее поле для фильтрации
+    * @var string
+    */
+    protected $filterBy = 'site_id';
+    
+    /**
+    * Свойство, хранящее значения для фильтрации
+    * @var mixed
+    */
+    protected $filterValue = 1;
+    
+    /**
     * Возвращает все элементы модели
     * @return Blog\Model
     */  
     public function all()
     {
         return $this->model
+             ->where($this->filterBy, $this->filterValue)   
              ->orderBy($this->sortBy, $this->sortOrder)
              ->get();
     }
@@ -38,8 +51,8 @@ abstract class BaseRepository
     */  
     public function paginated($paginate)
     {
-        return $this
-            ->model
+        return $this->model
+            ->where($this->filterBy, $this->filterValue)       
             ->orderBy($this->sortBy, $this->sortOrder)
             ->paginate($paginate);
     }
