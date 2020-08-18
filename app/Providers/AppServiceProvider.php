@@ -24,6 +24,15 @@ use Blog\Models\AboutPage;
 use Blog\Services\StaffService;
 use Blog\Repositories\StaffRepository;
 use Blog\Models\Staff;
+use Blog\Services\ContactPageService;
+use Blog\Repositories\ContactPageRepository;
+use Blog\Models\ContactPage;
+use Blog\Services\CategoryService;
+use Blog\Repositories\CategoryRepository;
+use Blog\Models\Category;
+use Blog\Services\TagService;
+use Blog\Repositories\TagRepository;
+use Blog\Models\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -71,6 +80,18 @@ class AppServiceProvider extends ServiceProvider
         
        $this->app->singleton(StaffService::class, function () {
             return new StaffService(new StaffRepository(new Staff()));
+        });
+        
+        $this->app->singleton(ContactPageService::class, function () {
+            return new ContactPageService(new ContactPageRepository(new ContactPage()));
+        });
+        
+        $this->app->singleton(CategoryService::class, function () {
+            return new CategoryService(new CategoryRepository(new Category()));
+        });
+        
+        $this->app->singleton(TagService::class, function () {
+            return new TagService(new TagRepository(new Tag()));
         });
         
         $serviceSite = app(SiteService::class);

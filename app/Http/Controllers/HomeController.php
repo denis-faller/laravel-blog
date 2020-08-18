@@ -32,7 +32,7 @@ class HomeController extends Controller
         $postsForMainPage = array_chunk($postsForMainPage, ceil(count($postsForMainPage)/2));
         
         $paginatePosts = $postService->getPaginatePosts(9);
-        $paginatePosts->setPath('/recent-posts/');
+        $paginatePosts->setPath(route('recent.posts.index'));
         
         return view('home', ['title' => 'Главная', 
             'description' => 'Главная страница сайта', 

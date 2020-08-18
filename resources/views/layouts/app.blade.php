@@ -43,7 +43,11 @@
             <nav class="site-navigation" role="navigation">
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
                 @foreach($headerMenu as $item)
+                @if($item->url != "")
+                <li><a href="{{route('category.show', $item->url)}}">{{$item->name}}</a></li>
+                @else
                 <li><a href="/{{$item->url}}">{{$item->name}}</a></li>
+                @endif
                 @endforeach
                 <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span class="icon-search"></span></a></li>
               </ul>

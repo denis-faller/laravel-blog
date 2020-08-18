@@ -32,7 +32,7 @@ class CreateContactPageTable extends Migration
             [   'site_id' => Site::MAIN_SITE_ID, 
                 'title_text' => '<h1 class="">Contact Us</h1>
               <p class="lead mb-4 text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, adipisci?</p>', 
-                'title_img' => '/resources/images/img_4.jpg',
+                'title_img' => '/assets/images/img_4.jpg',
                 'address' => '203 Fake St. Mountain View, San Francisco, California, USA',
                 'phone' => '+1 232 3235 324',
                 'email' => 'youremail@domain.com',

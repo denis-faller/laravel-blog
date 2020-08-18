@@ -24,6 +24,8 @@ class AboutPageController extends Controller
 
     /**
     * Возвращает представление страницы о блоге
+    * @param AboutPageService $aboutPageService
+    * @param StaffService $staffService
     * @return Illuminate\Support\Facades\View
     */  
     public function index(AboutPageService $aboutPageService, StaffService $staffService)

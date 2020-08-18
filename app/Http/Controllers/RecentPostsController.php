@@ -22,13 +22,15 @@ class RecentPostsController extends Controller
 
     /**
     * Возвращает представление страницы последних постов
+    * @param Request $request
+    * @param PostService $postService
     * @return Illuminate\Support\Facades\View
     */  
     public function index(Request $request, PostService $postService)
     {
         $paginatePosts = $postService->getPaginatePosts(9);
         
-        if($request->page < 1 || $request->page > $paginatePosts->lastPage()){
+        if($request->page < 0 || $request->page > $paginatePosts->lastPage()){
             abort(404);
         }
         

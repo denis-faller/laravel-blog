@@ -14,7 +14,7 @@ class RecentPostsTest extends TestCase
      */
     public function testView()
     {
-        $response = $this->get(route('recent.Posts.index'));
+        $response = $this->get(route('recent.posts.index').'?page=1');
         
         $response->assertStatus(200);
         

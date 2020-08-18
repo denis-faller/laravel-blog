@@ -9,7 +9,7 @@ use Tests\TestCase;
 class HomeTest extends TestCase
 {
     /**
-     * Тест проверяет отображение страницы информации о сайте
+     * Тест проверяет отображение главной страницы
      * @return void
      */
     public function testView()

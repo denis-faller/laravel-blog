@@ -47,4 +47,32 @@ class PostService extends BaseService
        
        return $this->repo->getPaginatePosts($paginate);
     }
+    
+    /**
+    * Возвращает пагинатор для постов категории
+    * @param int $categoryID
+    * @param int $paginate
+    * @return Blog\Post
+    */  
+    public function getPaginatePostsByCategory($categoryID, $paginate)
+    {
+       $this->repo->setFilterBy('category_id');
+       $this->repo->setFilterValue($categoryID); 
+        
+       $this->repo->setSortBy('publish_time');
+       $this->repo->setSortOrder('desc');
+       
+       return $this->repo->getPaginatePosts($paginate);
+    }
+    
+    /**
+    * Возвращает пагинатор для постов тега
+    * @param int $tagID
+    * @param int $paginate
+    * @return Blog\Post
+    */  
+    public function getPaginatePostsByTag($tagID, $paginate)
+    {
+       return $this->repo->getPaginatePostsByTag($tagID, $paginate);
+    }
 }

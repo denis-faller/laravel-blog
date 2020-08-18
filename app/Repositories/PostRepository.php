@@ -38,5 +38,18 @@ class PostRepository extends BaseRepository
     public function getPaginatePosts($paginate)
     {
         return $this->paginated($paginate);
-    } 
+    }
+    
+    /**
+    * Возвращает пагинатор для постов тега
+    * @param int $tagID
+    * @param int $paginate
+    * @return Blog\Post
+    */  
+    public function getPaginatePostsByTag($tagID, $paginate)
+     {
+        return $this->model::whereHas('tags', function ($query) use ($tagID) {
+            $query->where('id', $tagID);
+        })->orderBy('publish_time', 'desc')->paginate($paginate);
+    }
 }

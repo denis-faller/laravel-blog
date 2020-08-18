@@ -14,8 +14,8 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Post::class, 10)->create()->each(function ($u) {
-            $u->tags()->save(Tag::find(rand(1, 2)));
+        factory(Post::class, 10)->create()->each(function ($p) {
+            $p->tags()->save(Tag::find(rand(1, 2)));
         });;
     }
 }

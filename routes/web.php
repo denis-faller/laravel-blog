@@ -26,7 +26,7 @@ Route::resource('/recent-posts/', 'RecentPostsController', ['only' => [
     'index'
     ],
     'names' => [
-        'index' => 'recent.Posts.index'
+        'index' => 'recent.posts.index'
     ]
 ]);
 
@@ -35,5 +35,31 @@ Route::resource('/about/', 'AboutPageController', ['only' => [
     ],
     'names' => [
         'index' => 'about.index'
+    ]
+]);
+
+Route::resource('/contacts/', 'ContactPageController', ['only' => [
+    'index',
+    ],
+    'names' => [
+        'index' => 'contact.index'
+    ]
+]);
+
+Route::post('/send-mail/', 'ContactPageController@send')->name('contact.send');
+
+Route::resource('category', 'CategoryController', ['only' => [
+    'show',
+    ],
+    'names' => [
+        'show' => 'category.show'
+    ]
+]);
+
+Route::resource('tags', 'TagController', ['only' => [
+    'show',
+    ],
+    'names' => [
+        'show' => 'tags.show'
     ]
 ]);
