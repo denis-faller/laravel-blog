@@ -4,6 +4,7 @@ namespace Blog\Repositories;
 
 use Blog\Models\Tag;
 use Blog\Repositories\Traits\Sortable;
+use Blog\Repositories\Traits\Filterable;
 
 /** 
  * Класс репозитория тега
@@ -11,6 +12,7 @@ use Blog\Repositories\Traits\Sortable;
 class TagRepository extends BaseRepository
 {
     use Sortable;
+    use Filterable;
     
     /**
     * Экземпляр модели тега
@@ -25,16 +27,5 @@ class TagRepository extends BaseRepository
     public function __construct(Tag $tag)
     {
         $this->model = $tag;
-    }
-
-    
-    /**
-    * Находит элемент модели по url
-    * @param string $url 
-    * @return Blog\Models\Tag
-    */  
-    public function findByUrl($url)
-    {
-        return $this->model->where('url', $url)->first();
     }
 }

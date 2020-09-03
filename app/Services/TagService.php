@@ -25,6 +25,9 @@ class TagService extends BaseService
     */  
     public function findByUrl($url)
     {
-        return $this->repo->findByUrl($url);
+        $this->repo->setFilterBy('url');
+        $this->repo->setFilterValue($url); 
+        
+        return $this->repo->all()->first();
     }
 }

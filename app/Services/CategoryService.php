@@ -25,6 +25,19 @@ class CategoryService extends BaseService
     */  
     public function findByUrl($url)
     {
-        return $this->repo->findByUrl($url);
+        $this->repo->setFilterBy('url');
+        $this->repo->setFilterValue($url); 
+        
+        return $this->repo->all()->first();
+    }
+    
+        
+    /**
+    * Возвращает кол-во постов для каждой категории
+    * @return Blog\Models\Category
+    */  
+    public function getСountPostsByCategory()
+    {
+       return $this->repo->getСountPostsByCategory();
     }
 }

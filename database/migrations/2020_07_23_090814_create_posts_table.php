@@ -23,6 +23,7 @@ class CreatePostsTable extends Migration
             $table->string('url', 255);
             $table->timestamp('publish_time');
             $table->string('preview_img', 255);
+            $table->string('img', 255);
             $table->integer('view_count');
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
@@ -41,6 +42,7 @@ class CreatePostsTable extends Migration
               'url' => 'ai-removes',
               'publish_time' => $date, 
               'preview_img' => '/assets/images/img_1.jpg',
+              'img' => '/assets/images/img_1.jpg',  
               'view_count' => 0,
               'category_id' => 1, 
               'author_id' => 1,

@@ -31,14 +31,29 @@ class CreateCommentsTable extends Migration
         
         $date = Carbon\Carbon::now();
         DB::table('comments')->insert(
-            ['post_id' => 1, 'author_id' => 1, 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?', 'created_at' => $date, 'updated_at' => $date]
+            ['post_id' => 1, 'author_id' => 1, 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?11', 'created_at' => $date, 'updated_at' => $date]
         );
         DB::table('comments')->insert(
-            ['post_id' => 1, 'author_id' => 1, 'parent_id' => 1, 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?', 'created_at' => $date, 'updated_at' => $date]
+            ['post_id' => 1, 'author_id' => 1, 'parent_id' => 1, 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?22', 'created_at' => $date, 'updated_at' => $date]
         ); 
         DB::table('comments')->insert(
-            ['post_id' => 1, 'parent_id' => 2, 'name' => 'Jean Doe', 'email' => 'richsiteru@gmail.com', 'website' => 'example.com', 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?', 'created_at' => $date, 'updated_at' => $date]
+            ['post_id' => 1, 'parent_id' => 2, 'name' => 'Jean Doe', 'email' => 'richsiteru@gmail.com', 'website' => 'example.com', 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?33', 'created_at' => $date, 'updated_at' => $date]
         );        
+        DB::table('comments')->insert(
+            ['post_id' => 1, 'author_id' => 1, 'parent_id' => 1, 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?44', 'created_at' => $date, 'updated_at' => $date]
+        ); 
+        DB::table('comments')->insert(
+            ['post_id' => 1, 'parent_id' => 2, 'name' => 'Jean Doe', 'email' => 'richsiteru@gmail.com', 'website' => 'example.com', 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?55', 'created_at' => $date, 'updated_at' => $date]
+        );       
+        DB::table('comments')->insert(
+            ['post_id' => 1, 'author_id' => 1, 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?66', 'created_at' => $date, 'updated_at' => $date]
+        );
+        DB::table('comments')->insert(
+            ['post_id' => 1, 'author_id' => 1, 'parent_id' => 6, 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?77', 'created_at' => $date, 'updated_at' => $date]
+        ); 
+        DB::table('comments')->insert(
+            ['post_id' => 1, 'author_id' => 1, 'parent_id' => 3, 'message' => 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?88', 'created_at' => $date, 'updated_at' => $date]
+        ); 
     }
 
     /**

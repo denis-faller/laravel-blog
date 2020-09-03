@@ -75,4 +75,49 @@ class PostService extends BaseService
     {
        return $this->repo->getPaginatePostsByTag($tagID, $paginate);
     }
+    
+    /**
+    * Находит пост по url
+    * @param string $url
+    * @return Blog\Models\Post
+    */  
+    public function findByUrl($url)
+    {
+        $this->repo->setFilterBy('url');
+        $this->repo->setFilterValue($url); 
+        
+        return $this->repo->all()->first();
+    }
+    
+    /**
+    * Возвращает посты, отсортированные по популярности
+    * @param int $limit
+    * @return Blog\Post
+    */  
+    public function getPostsPopular($limit)
+    {
+       return $this->repo->getPostsPopular($limit);
+    }
+    
+    /**
+    * Инкремент счетчика просмотров текущего поста
+    * @param int $viewCount
+    * @return int
+    */  
+    public function incrementViewCount($postID, $viewCount)
+    {
+       return $this->repo->incrementViewCount($postID, $viewCount);
+    }
+    
+    /**
+    * Возвращает похожие посты категории
+    * @param int $postID
+    * @param int $categoryID
+    * @param int $limit
+    * @return Blog\Post
+    */  
+    public function getRelatedPost($postID, $categoryID, $limit)
+    {
+       return $this->repo->getRelatedPost($postID, $categoryID, $limit);
+    }
 }

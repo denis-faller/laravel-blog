@@ -4,6 +4,8 @@ namespace Blog\Repositories;
 
 use Blog\Models\Category;
 use Blog\Repositories\Traits\Sortable;
+use Blog\Repositories\Traits\Filterable;
+use Illuminate\Support\Facades\DB;
 
 /** 
  * Класс репозитория категории
@@ -11,6 +13,7 @@ use Blog\Repositories\Traits\Sortable;
 class CategoryRepository extends BaseRepository
 {
     use Sortable;
+    use Filterable;
     
     /**
     * Экземпляр модели категории
@@ -26,15 +29,17 @@ class CategoryRepository extends BaseRepository
     {
         $this->model = $category;
     }
-
     
     /**
-    * Находит элемент модели по url
-    * @param string $url 
+    * Возвращает кол-во постов для каждой категории
     * @return Blog\Models\Category
     */  
-    public function findByUrl($url)
+    public function getСountPostsByCategory()
     {
-        return $this->model->where('url', $url)->first();
+       return $this->model
+               ->select('categories.id', DB::raw('count(*) as total'), 'categories.name', 'categories.url')
+               ->join('posts', 'categories.id', '=', 'posts.category_id')
+               ->groupBy('posts.category_id')
+               ->get();
     }
 }

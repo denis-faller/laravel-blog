@@ -27,6 +27,7 @@ $factory->define(Post::class, function (Faker $faker) {
         'url' => $faker->domainWord,
         'publish_time' => $date, 
         'preview_img' => '/assets/images/img_1.jpg',
+        'img' => '/assets/images/img_1.jpg', 
         'view_count' => 0,
         'category_id' => rand(1, 2),
         'author_id' => 1,

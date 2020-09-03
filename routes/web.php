@@ -63,3 +63,5 @@ Route::resource('tags', 'TagController', ['only' => [
         'show' => 'tags.show'
     ]
 ]);
+
+Route::get('/{urlPost}', 'PostController@show')->name('post.show');

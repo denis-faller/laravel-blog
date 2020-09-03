@@ -33,6 +33,9 @@ use Blog\Models\Category;
 use Blog\Services\TagService;
 use Blog\Repositories\TagRepository;
 use Blog\Models\Tag;
+use Blog\Services\CommentService;
+use Blog\Repositories\CommentRepository;
+use Blog\Models\Comment;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -92,6 +95,14 @@ class AppServiceProvider extends ServiceProvider
         
         $this->app->singleton(TagService::class, function () {
             return new TagService(new TagRepository(new Tag()));
+        });
+        
+        $this->app->singleton(TagService::class, function () {
+            return new TagService(new TagRepository(new Tag()));
+        });
+        
+        $this->app->singleton(CommentService::class, function () {
+            return new CommentService(new CommentRepository(new Comment()));
         });
         
         $serviceSite = app(SiteService::class);

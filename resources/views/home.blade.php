@@ -10,7 +10,7 @@
           @if($cnt == 0 || $cnt == 2 || $cnt == 3)
           <div class="col-md-4">
           @endif
-            <a href="/{{$item->categories->url}}/{{$item->url}}" class="h-entry @if($cnt == 2)  img-5 h-100 @else @if($cnt == 0 || $cnt == 3) mb-30 @endif v-height @endif gradient" style="background-image: url('{{$item->preview_img}}');">
+            <a href="{{route('post.show', $item->url)}}" class="h-entry @if($cnt == 2)  img-5 h-100 @else @if($cnt == 0 || $cnt == 3) mb-30 @endif v-height @endif gradient" style="background-image: url('{{$item->preview_img}}');">
               
               <div class="text">
                 <div class="post-categories mb-3">
@@ -73,7 +73,7 @@
           @if($cnt == 2)
           <div class="two-col d-block d-md-flex">
           @endif
-            <a href="/{{$item->categories->url}}/{{$item->url}}" class="hentry @if($cnt == 0) img-1 @else ($cnt == 1) img-2  @endif v-height @if($cnt == 0) h-100 @elseif($cnt == 1) mb30  @endif gradient @if($cnt == 3)  ml-auto @endif" style="background-image: url('{{$item->preview_img}}');">
+            <a href="{{route('post.show', $item->url)}}" class="hentry @if($cnt == 0) img-1 @else ($cnt == 1) img-2  @endif v-height @if($cnt == 0) h-100 @elseif($cnt == 1) mb30  @endif gradient @if($cnt == 3)  ml-auto @endif" style="background-image: url('{{$item->preview_img}}');">
             @foreach($item->tags as $tag)
             <span class="post-category text-white" style = "background-color:{{$tag->color}}">{{$tag->name}}</span>
             @endforeach
