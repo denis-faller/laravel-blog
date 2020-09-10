@@ -64,4 +64,28 @@ Route::resource('tags', 'TagController', ['only' => [
     ]
 ]);
 
+Route::resource('search', 'SearchController', ['only' => [
+    'index'
+    ],
+    'names' => [
+        'index' => 'search.index'
+    ]
+]);
+
+Route::resource('subscriber', 'SubscriberController', ['only' => [
+    'store'
+    ],
+    'names' => [
+        'store' => 'subscriber.store'
+    ]
+]);
+
 Route::get('/{urlPost}', 'PostController@show')->name('post.show');
+
+Route::resource('comment', 'CommentController', ['only' => [
+    'store',
+    ],
+    'names' => [
+        'store' => 'comment.store'
+    ]
+]);

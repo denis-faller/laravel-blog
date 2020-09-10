@@ -36,6 +36,9 @@ use Blog\Models\Tag;
 use Blog\Services\CommentService;
 use Blog\Repositories\CommentRepository;
 use Blog\Models\Comment;
+use Blog\Services\SubscriberService;
+use Blog\Repositories\SubscriberRepository;
+use Blog\Models\Subscriber;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -103,6 +106,10 @@ class AppServiceProvider extends ServiceProvider
         
         $this->app->singleton(CommentService::class, function () {
             return new CommentService(new CommentRepository(new Comment()));
+        });
+        
+        $this->app->singleton(SubscriberService::class, function () {
+            return new SubscriberService(new SubscriberRepository(new Subscriber()));
         });
         
         $serviceSite = app(SiteService::class);

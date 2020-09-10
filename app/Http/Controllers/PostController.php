@@ -22,50 +22,6 @@ class PostController extends Controller
     {
         
     }
-    
-    public static function nestedComment($id, $comments){
-       $commentsNested = array_filter($comments, function($k) use($id){
-           foreach($k as $value){
-               if($value->parent_id == $id){
-                  return  true;
-               }
-           }        
-       });
-       
-       foreach($commentsNested as $commentAr){
-           $index = 0;
-           foreach($commentAr as $comment){
-                if($index == 0){
-                    echo '<ul class="children">';
-                }
-                echo '<li class="comment">
-                    <div class="vcard">';
-                    if(isset($comment->author)){
-                        echo '<img src="'.$comment->author->img.'" alt="'.$comment->author->name.'">';
-                    }
-                    echo '  
-                    </div>
-                    <div class="comment-body">';
-                    if(isset($comment->author)){
-                        echo '<h3>'.$comment->author->name.'</h3>';
-                    }
-                    else{
-                       echo '<h3>'.$comment->name.'</h3>';
-                    }
-                    echo '
-                      <div class="meta">'.date('M d, Y at H:i', strtotime($comment->created_at)).'</div>
-                      <p>'.$comment->message.'</p>
-                      <p><a href="#" class="reply rounded">Reply</a></p>
-                    </div>
-                </li>';
-               if($index == (count($commentAr)-1)){
-                    echo '</ul>';
-               }
-               $index++;
-               self::nestedComment($comment->id, $comments);
-           }
-       }
-    }
 
     /**
     * Возвращает представление страницы поста

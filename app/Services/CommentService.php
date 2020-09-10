@@ -20,8 +20,8 @@ class CommentService extends BaseService
     
     /**
     * Возвращает комментарии поста
-    * @param string $url
-    * @return Blog\Models\Tag
+    * @param int $postID
+    * @return Blog\Models\Comment
     */  
     public function findByPostID($postID)
     {
@@ -29,5 +29,18 @@ class CommentService extends BaseService
         $this->repo->setFilterValue($postID); 
         
         return $this->repo->all();
+    }
+    
+    /**
+    * Возвращает комментарий с определенным сообщением
+    * @param string $message
+    * @return Blog\Models\Comment
+    */  
+    public function findByMessage($message)
+    {
+        $this->repo->setFilterBy('message');
+        $this->repo->setFilterValue($message); 
+        
+        return $this->repo->all()->first();
     }
 }

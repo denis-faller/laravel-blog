@@ -258,5 +258,9 @@ jQuery(document).ready(function($) {
 		}
 	};
 	searchToggle();
+        
+        $("body").on("click", ".reply", function(){
+            $("#parent-id").val($(this).data("id"));
+        })
 
 });

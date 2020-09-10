@@ -18,16 +18,16 @@ class CreateSubscribersTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('site_id');
             $table->foreign('site_id')->references('id')->on('sites');
-            $table->string('name', 255);
             $table->string('email', 255);
+            $table->unique('email');
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
         
         $date = Carbon\Carbon::now();
         DB::table('subscribers')->insert([
-            ['site_id' => Site::MAIN_SITE_ID, 'name' => 'Jhon', 'email' => 'richsiteru@gmail.com', 'created_at' => $date, 'updated_at' => $date],
-            ['site_id' => Site::MAIN_SITE_ID, 'name' => 'Michael', 'email' => 'richsiteru@gmail.com', 'created_at' => $date, 'updated_at' => $date]
+            ['site_id' => Site::MAIN_SITE_ID, 'email' => 'richsiteru@gmail.com', 'created_at' => $date, 'updated_at' => $date],
+            ['site_id' => Site::MAIN_SITE_ID, 'email' => 'greatconvert@yandex.ru', 'created_at' => $date, 'updated_at' => $date]
         ]);
     }
 

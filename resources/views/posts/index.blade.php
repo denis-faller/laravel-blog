@@ -1,4 +1,4 @@
-<?php use Blog\Http\Controllers\PostController; ?>
+<?php use Blog\Http\Controllers\CommentController; ?>
 @extends('layouts.app')
 
 @section('content')
@@ -70,34 +70,39 @@
                             @endif
                             <div class="meta">{{date('M d, Y at H:i', strtotime($comment->created_at))}}</div>
                             <p>{{$comment->message}}</p>
-                            <p><a href="#" class="reply rounded">Reply</a></p>
+                            <p><a href="#add-comment" data-id ="{{$comment->id}}" class="reply rounded">Reply</a></p>
                           </div>
                         </li>
-                        <?php PostController::nestedComment($comment->id, $commentsAr); ?> 
+                        <?php CommentController::nestedComment($comment->id, $commentsAr); ?> 
                     @endforeach
                 @endif
               </ul>
               <!-- END comment-list -->
               
               <div class="comment-form-wrap pt-5">
+                <a name="add-comment"></a>
                 <h3 class="mb-5">Leave a comment</h3>
-                <form action="#" class="p-5 bg-light">
+                 @include('common.errors')
+                <form action="{{route('comment.store')}}" method ="POST" class="p-5 bg-light">
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  <input type = "hidden" name = "post_id" id ="post-id" value = "{{$post->id}}">   
+                  <input type = "hidden" name = "parent_id" id ="parent-id">
                   <div class="form-group">
                     <label for="name">Name *</label>
-                    <input type="text" class="form-control" id="name">
+                    <input name="name" type="text" class="form-control" id="name">
                   </div>
                   <div class="form-group">
                     <label for="email">Email *</label>
-                    <input type="email" class="form-control" id="email">
+                    <input name="email" type="email" class="form-control" id="email">
                   </div>
                   <div class="form-group">
                     <label for="website">Website</label>
-                    <input type="url" class="form-control" id="website">
+                    <input name="website" type="url" class="form-control" id="website">
                   </div>
 
                   <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                    <label for="message">Message *</label>
+                    <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
                   </div>
                   <div class="form-group">
                     <input type="submit" value="Post Comment" class="btn btn-primary">
@@ -230,8 +235,10 @@
             <div class="subscribe-1 ">
               <h2>Subscribe to our newsletter</h2>
               <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit nesciunt error illum a explicabo, ipsam nostrum.</p>
-              <form action="#" class="d-flex">
-                <input type="text" class="form-control" placeholder="Enter your email address">
+               @include('common.errors')
+              <form action="{{route('subscriber.store')}}" method ="POST" class="d-flex">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <input name = "email" type="email" class="form-control" placeholder="Enter your email address">
                 <input type="submit" class="btn btn-primary" value="Subscribe">
               </form>
             </div>
