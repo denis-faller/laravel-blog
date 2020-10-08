@@ -77,7 +77,9 @@ class CommentController extends Controller
     */  
     public function store(CommentAddRequest $request, CommentService $commentService, PostService $postService)
     {
-        $commentService->create(array('post_id' => $request->post_id, 
+        $commentService->create(array(
+            'author_id' => $request->author_id, 
+            'post_id' => $request->post_id, 
             'parent_id' => $request->parent_id, 
             'name' => $request->name, 
             'email' => $request->email, 

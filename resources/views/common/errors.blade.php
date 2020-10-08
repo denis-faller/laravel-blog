@@ -1,4 +1,5 @@
 @if (count($errors) > 0)
+  @if(!$errors->has('subscriber_email'))  
   <!-- Список ошибок формы -->
   <div class="alert alert-danger">
     <strong>При заполнении данных вы совершили следующие ошибки</strong>
@@ -11,4 +12,5 @@
       @endforeach
     </ul>
   </div>
+  @endif
 @endif

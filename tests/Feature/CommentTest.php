@@ -36,6 +36,9 @@ class CommentTest extends TestCase
         
         $commentService = app(CommentService::class);
         $comment = $commentService->findByMessage($message);
+        
+        $this->assertDatabaseHas('comments', ['id' => $comment->id]);
+        
         $commentService->destroy($comment->id);
     }
 }

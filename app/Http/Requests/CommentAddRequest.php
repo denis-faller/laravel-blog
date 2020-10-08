@@ -16,10 +16,11 @@ class CommentAddRequest extends FormRequest
     public function rules()
     {
         return [
+            'author_id' => 'integer|max:255',
             'post_id' => 'required|integer|max:255',
             'parent_id' => 'max:255',
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255',
+            'name' => 'max:255',
+            'email' => 'email|max:255',
             'website' => 'max:255',
             'message' => 'required|max:255',
         ];

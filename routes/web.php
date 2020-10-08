@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Как переименовать пространство имен - https://github.com/laravel/framework/issues/29810
+// Руководство по аутентификации - https://stackoverflow.com/questions/34545641/php-artisan-makeauth-command-is-not-defined
 
 Route::resource('/', 'HomeController', ['only' => [
     'index'
@@ -79,6 +80,19 @@ Route::resource('subscriber', 'SubscriberController', ['only' => [
         'store' => 'subscriber.store'
     ]
 ]);
+
+Auth::routes();
+
+Route::resource('user', 'UserController', ['only' => [
+    'index', 'update',
+    ],
+    'names' => [
+        'index' => 'user.index',
+        'update' => 'user.update',
+    ]
+]);
+
+Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/{urlPost}', 'PostController@show')->name('post.show');
 

@@ -23,6 +23,12 @@ class CreateRolesTable extends Migration
         DB::table('roles')->insert(
             ['name' => 'Администратор','created_at' => $date, 'updated_at' => $date]
         );
+        DB::table('roles')->insert(
+            ['name' => 'Зарегистрированный пользователь','created_at' => $date, 'updated_at' => $date]
+        );
+        DB::table('roles')->insert(
+            ['name' => 'Контент-менеджер','created_at' => $date, 'updated_at' => $date]
+        );
     }
 
     /**

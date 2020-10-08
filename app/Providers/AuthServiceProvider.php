@@ -4,6 +4,7 @@ namespace Blog\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Auth;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'Blog\Model' => 'Blog\Policies\ModelPolicy',
+         \Blog\Models\User::class => \Blog\Policies\UserPolicy::class,
     ];
 
     /**
@@ -24,7 +25,14 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
-        //
+        
+        view()->composer('*', function($view)
+        {
+            if (Auth::check()) {
+                $view->with('currentUser', Auth::user());
+            }else {
+                $view->with('currentUser', null);
+            }
+        });
     }
 }

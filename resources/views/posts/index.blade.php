@@ -85,8 +85,12 @@
                  @include('common.errors')
                 <form action="{{route('comment.store')}}" method ="POST" class="p-5 bg-light">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  @if(isset($currentUser))
+                  <input type = "hidden" name = "author_id" id ="author-id" value = "{{$currentUser->id}}">
+                  @endif
                   <input type = "hidden" name = "post_id" id ="post-id" value = "{{$post->id}}">   
                   <input type = "hidden" name = "parent_id" id ="parent-id">
+                  @if(!isset($currentUser))
                   <div class="form-group">
                     <label for="name">Name *</label>
                     <input name="name" type="text" class="form-control" id="name">
@@ -99,7 +103,8 @@
                     <label for="website">Website</label>
                     <input name="website" type="url" class="form-control" id="website">
                   </div>
-
+                  @endif
+                  
                   <div class="form-group">
                     <label for="message">Message *</label>
                     <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
@@ -227,23 +232,5 @@
       </div>
     </div>
 
-
-    <div class="site-section bg-lightx">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-md-5">
-            <div class="subscribe-1 ">
-              <h2>Subscribe to our newsletter</h2>
-              <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit nesciunt error illum a explicabo, ipsam nostrum.</p>
-               @include('common.errors')
-              <form action="{{route('subscriber.store')}}" method ="POST" class="d-flex">
-                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <input name = "email" type="email" class="form-control" placeholder="Enter your email address">
-                <input type="submit" class="btn btn-primary" value="Subscribe">
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    @include('subscriber')
 @endsection

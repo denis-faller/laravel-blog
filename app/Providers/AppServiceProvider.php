@@ -39,6 +39,9 @@ use Blog\Models\Comment;
 use Blog\Services\SubscriberService;
 use Blog\Repositories\SubscriberRepository;
 use Blog\Models\Subscriber;
+use Blog\Services\UserService;
+use Blog\Repositories\UserRepository;
+use Blog\Models\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -55,7 +58,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      * Регистрирует привязки для сервисов
-     * Задает переменную site, header_menu, footer_menu и social_links для всех представлений сайта
+     * Задает переменную site, header_menu, footer_menu, social_links для всех представлений сайта
      * @return void
      */
     public function boot()
@@ -110,6 +113,10 @@ class AppServiceProvider extends ServiceProvider
         
         $this->app->singleton(SubscriberService::class, function () {
             return new SubscriberService(new SubscriberRepository(new Subscriber()));
+        });
+        
+        $this->app->singleton(UserService::class, function () {
+            return new UserService(new UserRepository(new User()));
         });
         
         $serviceSite = app(SiteService::class);

@@ -17,4 +17,17 @@ class SubscriberService extends BaseService
     {
         $this->repo = $subscriberRepository;
     }
+    
+    /**
+    * Возвращает подписчика с определенным email
+    * @param string $email
+    * @return Blog\Models\Subscriber
+    */  
+    public function findByEmail($email)
+    {
+        $this->repo->setFilterBy('email');
+        $this->repo->setFilterValue($email); 
+        
+        return $this->repo->all()->first();
+    }
 }

@@ -3,12 +3,14 @@
 namespace Blog\Repositories;
 
 use Blog\Models\Subscriber;
+use Blog\Repositories\Traits\Filterable;
 
 /** 
  * Класс репозитория подписки
  */
 class SubscriberRepository extends BaseRepository
 {
+    use Filterable;
     /**
     * Экземпляр модели подписки
     * @var Subscriber

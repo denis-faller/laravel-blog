@@ -32,15 +32,17 @@ class SearchController extends Controller
             $paginatePosts = Post::search($request->q)->paginate(15);
             $posts = $paginatePosts->all();
             $currentPage = $paginatePosts->currentPage();
+            $title = "Страница поиска - страница ".$currentPage;
+            $description = "Страница поиска по запросу $query - страница ".$currentPage;
+
+            return view('search', ['title' => $title, 
+               'description' => $description,
+               'query' => $query,
+               'posts' => $posts,
+               'paginatePosts' => $paginatePosts]);
         }
-        
-        $title = "Страница поиска - страница ".$currentPage;
-        $description = "Страница поиска по запросу $query - страница ".$currentPage;
-        
-        return view('search', ['title' => $title, 
-           'description' => $description,
-           'query' => $query,
-           'posts' => $posts,
-           'paginatePosts' => $paginatePosts]);
+        else{
+            abort(404);
+        }
     } 
 }

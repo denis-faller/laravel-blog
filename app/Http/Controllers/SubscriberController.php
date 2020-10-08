@@ -31,7 +31,7 @@ class SubscriberController extends Controller
     {
         $subscriberService->create(array( 
             'site_id' => Site::MAIN_SITE_ID, 
-            'email' => $request->email));
+            'email' => $request->subscriber_email));
             return redirect(url()->previous());
     } 
 }

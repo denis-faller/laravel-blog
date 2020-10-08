@@ -3,7 +3,7 @@
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@if(isset($content)){{$content->name}}@else {{$title}}@endif | {{$site->name}}</title>
-    <meta name="description" content="@if(isset($content)){{$content->description}}@else{{$description}}@endif">
+    <meta name="description" content="{{$description}}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -50,11 +50,14 @@
                 @endif
                 @endforeach
                 <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span class="icon-search"></span></a></li>
+                @if(isset($currentUser))
+                <li><a href = "{{route('user.index')}}">{{$currentUser->name}}</a> | <a href = "/logout">Выйти</a></li>
+                @endif
               </ul>
             </nav>
             <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none"><span class="icon-menu h3"></span></a></div>
           </div>
-
+          
             <div class="col-12 search-form-wrap js-search-form">
                 <form method="get" action="{{route('search.index')}}">
                   <input name = "q" type="text" id="s" class="form-control" placeholder="Search...">

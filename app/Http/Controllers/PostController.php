@@ -35,6 +35,10 @@ class PostController extends Controller
     {
         $post = $postService->findByUrl($postUrl);
         
+        if(!isset($post->id)){
+            abort(404);
+        }
+        
         $popularPosts = $postService->getPostsPopular(3);
         
         $categories = $categoryService->getСountPostsByCategory();
@@ -53,10 +57,6 @@ class PostController extends Controller
             else{
                 $commentsAr[$comment->parent_id][] = $comment;
             }
-        }
-        
-        if(!isset($post->id)){
-            abort(404);
         }
         
         $relatedPosts = $postService->getRelatedPost($post->id, $post->category_id, 4);

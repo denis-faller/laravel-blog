@@ -16,7 +16,7 @@ class SubscriberAddRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email|unique:subscribers|max:255',
+            'subscriber_email' => 'required|email|unique:subscribers,email|max:255',
         ];
     }
     
