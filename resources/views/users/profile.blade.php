@@ -11,13 +11,22 @@
       </div>
     </div>
     
-    
     <div class="site-section bg-white">
         <div class="container">
             @include('common.errors')
-            <form action = "{{route('user.update', $user->id)}}" method = "POST" enctype="multipart/form-data">
+            <form action = "{{route('users.update', $user->id)}}" method = "POST" enctype="multipart/form-data">
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                @if(in_array($roleAdminID, $currentUserRolesIDs))
+                <div class="form-group">
+                    <label for="name">Роли пользователя</label>
+                    <select class="form-control"  name="roles[]" size="3" multiple>
+                        @foreach($roles as $role)
+                        <option  @if(in_array($role->id, $userRolesIDs)) selected @endif value="{{$role->id}}">{{$role->name}}</option>
+                        @endforeach
+                   </select>
+                </div>
+                @endif
                 <div class="form-group">
                     <label for="name">Логин пользователя</label>
                     <input class="form-control" name = "name" type = "text" value = "{{$user->name}}">

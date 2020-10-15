@@ -7,6 +7,8 @@ use Blog\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Blog\Services\UserService;
 use Blog\Http\Requests\UserRequest;
+use Blog\Services\RoleService;
+use Blog\Models\Role;
 
 /** 
  * Контроллер для вывода профиля пользователя
@@ -24,22 +26,57 @@ class UserController extends Controller
     }
 
     /**
-    * Возвращает представление страницы профиля
+    * Возвращает представление страницы пользователей
     * @return Illuminate\Support\Facades\View
     */  
-    public function index()
+    public function index(UserService $userService)
     {
-        if(Auth::Check()){
-            $user = Auth::user();
-            $title = 'Профиль '.$user->name;
-            $description = 'Профиль пользователя '.$user->name;
-            return view('user', ['title' => $title, 
-               'description' => $description,
-               'user' => $user]);
+        $this->authorize('index', User::class);
+        $paginateUsers = $userService->paginated(9);
+        
+        $users = $paginateUsers->all();
+        $title = 'Пользователи блога';
+        $description = 'Все пользователи блога';
+        
+        return view('users.index', ['title' => $title, 
+           'description' => $description,
+            'users' => $users,
+            'paginateUsers' => $paginateUsers]);
+    }
+    
+    
+    /**
+    * Возвращает представление страницы профиля
+    * @param User $user
+    * @return Illuminate\Support\Facades\View
+    */  
+    public function show(User $user, RoleService $roleService)
+    {
+        $this->authorize('show', $user);
+        
+        $roles = $roleService->all();
+        
+        $userRolesIDs = array();
+        foreach($user->roles as $role){
+            $userRolesIDs[] = $role->id;
         }
-        else{
-            abort(404);
+        
+        $currentUserRolesIDs = array();
+        foreach(Auth::user()->roles as $role){
+            $currentUserRolesIDs[] = $role->id;
         }
+        
+        $roleAdminID = Role::ROLE_ADMIN;
+        
+        $title = 'Профиль '.$user->name;
+        $description = 'Профиль пользователя '.$user->name;
+        return view('users.profile', ['title' => $title, 
+           'description' => $description,
+           'user' => $user,
+           'roles' => $roles,
+           'userRolesIDs' => $userRolesIDs,
+           'currentUserRolesIDs' => $currentUserRolesIDs,
+           'roleAdminID' => $roleAdminID]);
     }
     
     /**
@@ -49,7 +86,7 @@ class UserController extends Controller
     * @param UserService $userService
     * @return Illuminate\Routing\Redirector
     */  
-    public function update(User $user, UserRequest $request, UserService $userService)
+    public function update(User $user, UserRequest $request, UserService $userService, RoleService $roleService)
     {
         $this->authorize('update', $user);
         
@@ -67,7 +104,10 @@ class UserController extends Controller
         }
         
         if(isset($userUpdated->id)){
-             return redirect(route('user.index'));
+            if(isset($request->roles)){
+                $userUpdated->roles()->sync($request->roles);
+            }
+            return redirect(route('users.show', $user->id));
         }
     }
 }

@@ -83,12 +83,13 @@ Route::resource('subscriber', 'SubscriberController', ['only' => [
 
 Auth::routes();
 
-Route::resource('user', 'UserController', ['only' => [
-    'index', 'update',
+Route::resource('users', 'UserController', ['only' => [
+    'index', 'update', 'show',
     ],
     'names' => [
-        'index' => 'user.index',
-        'update' => 'user.update',
+        'index' => 'users.index',
+        'update' => 'users.update',
+        'show' => 'users.show',
     ]
 ]);
 

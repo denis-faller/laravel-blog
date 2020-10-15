@@ -51,7 +51,7 @@
                 @endforeach
                 <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span class="icon-search"></span></a></li>
                 @if(isset($currentUser))
-                <li><a href = "{{route('user.index')}}">{{$currentUser->name}}</a> | <a href = "/logout">Выйти</a></li>
+                <li><a href = "{{route('users.show', $currentUser->id)}}">{{$currentUser->name}}</a> | <a href = "/logout">Выйти</a></li>
                 @endif
               </ul>
             </nav>

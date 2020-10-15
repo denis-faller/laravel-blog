@@ -42,6 +42,9 @@ use Blog\Models\Subscriber;
 use Blog\Services\UserService;
 use Blog\Repositories\UserRepository;
 use Blog\Models\User;
+use Blog\Services\RoleService;
+use Blog\Repositories\RoleRepository;
+use Blog\Models\Role;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -117,6 +120,10 @@ class AppServiceProvider extends ServiceProvider
         
         $this->app->singleton(UserService::class, function () {
             return new UserService(new UserRepository(new User()));
+        });
+        
+        $this->app->singleton(RoleService::class, function () {
+            return new RoleService(new RoleRepository(new Role()));
         });
         
         $serviceSite = app(SiteService::class);
