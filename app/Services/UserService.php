@@ -17,4 +17,28 @@ class UserService extends BaseService
     {
         $this->repo = $userRepository;
     }
+    
+   /**
+    * Возвращает пользователя с определенным email
+    * @param string $email
+    * @return Blog\Models\User
+    */  
+    public function findByEmail($email)
+    {
+        $this->repo->setFilterBy('email');
+        $this->repo->setFilterValue($email); 
+        
+        return $this->repo->all()->first();
+    }
+    
+    
+    /**
+    * Удаляет пользователя
+    * @param int $userID
+    * @return Blog\Models\User
+    */  
+    public function destroy($userID)
+    {
+        return $this->repo->destroy($userID);
+    }
 }

@@ -84,12 +84,15 @@ Route::resource('subscriber', 'SubscriberController', ['only' => [
 Auth::routes();
 
 Route::resource('users', 'UserController', ['only' => [
-    'index', 'update', 'show',
+    'index', 'update', 'show', 'destroy', 'create', 'store',
     ],
     'names' => [
         'index' => 'users.index',
         'update' => 'users.update',
         'show' => 'users.show',
+        'destroy' => 'users.destroy',
+        'create' => 'users.create',
+        'store' => 'users.store',
     ]
 ]);
 

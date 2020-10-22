@@ -39,6 +39,7 @@
     @endforeach
   </tbody>
 </table>
+<button  class="btn btn-primary" onclick = "window.location.href = '{{route('users.create')}}'">Создать нового пользователя</button>
   </div>
     <div class="site-section bg-white">
       <div class="container">

@@ -76,7 +76,7 @@ class RegisterController extends Controller
 
         $role = Role::find(Role::ROLE_REGISTERED_USER);
 
-        $role->users()->save($user);
+        $user->roles()->save($role);
         
         return $user;
     }

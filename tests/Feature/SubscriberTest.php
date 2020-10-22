@@ -21,7 +21,7 @@ class SubscriberTest extends TestCase
         $email = $this->faker->unique()->safeEmail;
         $response = $this->post(route('subscriber.store'), [
             'site_id' => Site::MAIN_SITE_ID, 
-            'email' => $email, 
+            'subscriber_email' => $email, 
         ]);
         
         $response->assertLocation(route("home.index"));

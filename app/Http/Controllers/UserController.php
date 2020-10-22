@@ -9,6 +9,8 @@ use Blog\Services\UserService;
 use Blog\Http\Requests\UserRequest;
 use Blog\Services\RoleService;
 use Blog\Models\Role;
+use Blog\Models\Site;
+use Illuminate\Support\Facades\Hash;
 
 /** 
  * Контроллер для вывода профиля пользователя
@@ -27,6 +29,7 @@ class UserController extends Controller
 
     /**
     * Возвращает представление страницы пользователей
+    * @param UserService $userService
     * @return Illuminate\Support\Facades\View
     */  
     public function index(UserService $userService)
@@ -44,10 +47,71 @@ class UserController extends Controller
             'paginateUsers' => $paginateUsers]);
     }
     
+    /**
+    * Возвращает представление страницы создания пользователя
+    * @param UserService $userService
+    * @param RoleService $roleService 
+    * @return Illuminate\Support\Facades\View
+    */  
+    public function create(UserService $userService, RoleService $roleService)
+    {
+        $this->authorize('create', User::class);
+        
+        $roles = $roleService->all();
+       
+        $currentUserRolesIDs = array();
+        foreach(Auth::user()->roles as $role){
+            $currentUserRolesIDs[] = $role->id;
+        }
+        
+        $roleAdminID = Role::ROLE_ADMIN;
+        
+        $title = 'Создание нового пользователя';
+        $description = 'Создание нового пользователя блога';
+        return view('users.create', ['title' => $title, 
+           'description' => $description,         
+           'roles' => $roles,
+           'currentUserRolesIDs' => $currentUserRolesIDs,
+           'roleAdminID' => $roleAdminID]);
+    }
+    
+    /**
+    * Создает пользователя
+    * @param User $user
+    * @param UserRequest $request
+    * @param UserService $userService
+    * @param RoleService $roleService 
+    * @return Illuminate\Support\Facades\View
+    */  
+    public function store(UserRequest $request, UserService $userService, RoleService $roleService)
+    {
+        $this->authorize('store', User::class);
+        
+        if(isset($request->image)){
+            $imageName = $request->image->hashName();
+
+            $request->image->move(public_path('assets/images'), $imageName);
+
+            $imagePath = '/assets/images/'.$imageName;
+            
+            $userCreated = $userService->create(array('site_id' => Site::MAIN_SITE_ID, 'name' => $request->name, 'description' => $request->description, 'email' => $request->email, 'password' => Hash::make($request->password), 'img' => $imagePath));
+        }
+        else{
+            $userCreated = $userService->create(array('site_id' => Site::MAIN_SITE_ID, 'name' => $request->name, 'description' => $request->description, 'email' => $request->email, 'password' => Hash::make($request->password)));
+        }
+        
+        if(isset($userCreated->id)){
+            if(isset($request->roles)){
+                $userCreated->roles()->sync($request->roles);
+            }
+            return redirect(route('users.show', $userCreated->id));
+        }
+    }
     
     /**
     * Возвращает представление страницы профиля
     * @param User $user
+    * @param RoleService $roleService
     * @return Illuminate\Support\Facades\View
     */  
     public function show(User $user, RoleService $roleService)
@@ -82,13 +146,24 @@ class UserController extends Controller
     /**
     * Обновляет пользователя
     * @param User $user
-    * @param Request $request
+    * @param UserRequest $request
     * @param UserService $userService
+    * @param RoleService $roleService
     * @return Illuminate\Routing\Redirector
     */  
     public function update(User $user, UserRequest $request, UserService $userService, RoleService $roleService)
     {
         $this->authorize('update', $user);
+        
+        $password = "";
+        
+        // Если поле пароль пустое, значит пароль не менялся
+        if(empty($request->password)){
+            $password = $user->password;
+        }
+        else{
+            $password = Hash::make($request->password);
+        }
         
         if(isset($request->image)){
             $imageName = $request->image->hashName();
@@ -97,10 +172,10 @@ class UserController extends Controller
 
             $imagePath = '/assets/images/'.$imageName;
             
-            $userUpdated = $userService->update($user->id, array('name' => $request->name, 'description' => $request->description, 'img' => $imagePath));
+            $userUpdated = $userService->update($user->id, array('name' => $request->name, 'description' => $request->description, 'email' => $request->email, 'password' => $password, 'img' => $imagePath));
         }
         else{
-            $userUpdated = $userService->update($user->id, array('name' => $request->name, 'description' => $request->description));
+            $userUpdated = $userService->update($user->id, array('name' => $request->name, 'description' => $request->description, 'email' => $request->email, 'password' => $password));
         }
         
         if(isset($userUpdated->id)){
@@ -109,5 +184,20 @@ class UserController extends Controller
             }
             return redirect(route('users.show', $user->id));
         }
+    }
+    
+    /**
+    * Удаляет пользователя
+    * @param User $user
+    * @param UserService $userService
+    * @return Illuminate\Routing\Redirector
+    */  
+    public function destroy(User $user, UserService $userService)
+    {
+        $this->authorize('destroy', $user);
+        
+        $isDelete = $userService->destroy($user->id);
+        
+        return redirect(route('users.index'));
     }
 }
