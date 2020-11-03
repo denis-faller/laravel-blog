@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <span>Все пользователи сайта</span>
+            <span>Все категории сайта</span>
           </div>
         </div>
       </div>
@@ -17,37 +17,31 @@
   <thead>
     <tr>
       <th scope="col">Id</th>
-      <th scope="col">Роль</th>
-      <th scope="col">Имя</th>
+      <th scope="col">Название</th>
+      <th scope="col">Урл</th>
       <th scope="col">Описание</th>
-      <th scope="col">Email</th>
     </tr>
   </thead>
   <tbody>
-      @foreach($users as $user)
+      @foreach($categories as $category)
     <tr>
-      <td><a href = "{{route('users.show', $user->id)}}">{{$user->id}}</a></td>
-      <td>
-        @foreach($user->roles as $role)
-            {{$role->name}}
-        @endforeach
-      </td>
-      <td>{{$user->name}}</td>
-      <td>{{$user->description}}</td>
-      <td>{{$user->email}}</td>
+      <td><a href = "{{route('category.admin.show', $category->id)}}">{{$category->id}}</a></td>
+      <td>{{$category->name}}</td>
+      <td>{{$category->url}}</td>
+      <td>{{$category->description}}</td>
     </tr>
     @endforeach
   </tbody>
 </table>
-<button  class="btn btn-primary" onclick = "window.location.href = '{{route('users.create')}}'">Создать нового пользователя</button>
+<button  class="btn btn-primary" onclick = "window.location.href = '{{route('category.create')}}'">Создать новую категорию</button>
   </div>
     <div class="site-section bg-white">
       <div class="container">
         <div class="row text-center pt-5 border-top">
           <div class="col-md-12">
             <div class="custom-pagination">
-                @if(isset($paginateUsers[0]))
-                {{ $paginateUsers->links('users.paginator') }}
+                @if(isset($paginateCategories[0]))
+                {{ $paginateCategories->links('categories.paginator') }}
                 @endif
             </div>
           </div>

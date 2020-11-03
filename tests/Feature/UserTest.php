@@ -68,7 +68,7 @@ class UserTest extends TestCase
         
         $response->assertLocation(route('users.show', $user->id));
         
-        $this->assertDatabaseHas('users', ['name' => $userName]);
+        $this->assertDatabaseHas('users', ['email' => $userEmail]);
         
         $userService->destroy($user->id);
     }
@@ -107,7 +107,7 @@ class UserTest extends TestCase
         
         $response->assertLocation(route('users.show', Auth::user()->id));
         
-        $this->assertDatabaseHas('users', ['name' => $userName]);
+        $this->assertDatabaseHas('users', ['email' => $userEmail]);
         
         $userService = app(UserService::class);
         

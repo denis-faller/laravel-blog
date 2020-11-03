@@ -6,5 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $fillable = array();
+    const TAG_TRAVEL_ID = 1;
+    
+    protected $fillable = [
+        'site_id', 'name', 'url', 'color',
+    ];
 }

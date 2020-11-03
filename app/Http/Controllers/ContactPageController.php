@@ -3,11 +3,10 @@
 namespace Blog\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Blog\Services\ContactPageService;
 use Blog\Models\ContactPage;
-use Blog\Mail\ContactForm;
 use Blog\Http\Requests\ContactFormRequest;
+use Blog\Jobs\SendContactFormJob;
 
 /** 
  * Контроллер для вывода страницы контактов
@@ -44,7 +43,9 @@ class ContactPageController extends Controller
     * @return Illuminate\Routing\Redirector
     */  
     public function send(ContactFormRequest $request){
-        Mail::to(env('MAIL_USERNAME'))->send(new ContactForm($request->first_name, $request->last_name, $request->email, $request->subject, $request->message));
+        
+        $emailJob = (new SendContactFormJob($request->first_name, $request->last_name, $request->email, $request->subject, $request->message))->delay(now()->addSeconds(3));
+        dispatch($emailJob);
         
         return redirect(route('contact.index'));
     }

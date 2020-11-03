@@ -17,7 +17,8 @@ class CreateMailingsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('site_id');
             $table->foreign('site_id')->references('id')->on('sites');
-            $table->text('text');
+            $table->unsignedBigInteger('post_id');
+            $table->foreign('post_id')->references('id')->on('posts');
             $table->timestamp('send_time')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();

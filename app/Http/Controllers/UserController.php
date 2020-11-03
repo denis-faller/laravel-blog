@@ -77,11 +77,10 @@ class UserController extends Controller
     
     /**
     * Создает пользователя
-    * @param User $user
     * @param UserRequest $request
     * @param UserService $userService
     * @param RoleService $roleService 
-    * @return Illuminate\Support\Facades\View
+    * @return Illuminate\Routing\Redirector
     */  
     public function store(UserRequest $request, UserService $userService, RoleService $roleService)
     {
@@ -198,6 +197,8 @@ class UserController extends Controller
         
         $isDelete = $userService->destroy($user->id);
         
-        return redirect(route('users.index'));
+        if($isDelete){
+            return redirect(route('users.index'));
+        }
     }
 }

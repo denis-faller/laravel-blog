@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    const CATEGORY_POLITIC_ID = 1;
+    
     protected $table = 'categories';
     
-    protected $fillable = array();
+    protected $fillable = [
+        'site_id', 'name', 'url', 'description',
+    ];
 }

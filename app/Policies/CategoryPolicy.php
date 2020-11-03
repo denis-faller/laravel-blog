@@ -6,7 +6,7 @@ use Blog\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Blog\Models\Role;
 
-class UserPolicy
+class CategoryPolicy
 {
     use HandlesAuthorization;
 
@@ -21,7 +21,7 @@ class UserPolicy
     }
     
    /**
-   * Определение, может ли текущий пользователь просматривать страницу юзеров
+   * Определение, может ли текущий пользователь просматривать страницу категорий
    * @param  \Blog\User  $currentUser
    * @return bool
    */
@@ -31,7 +31,7 @@ class UserPolicy
         foreach($currentUser->roles as $role){
             $currentUserRolesIDs[] = $role->id;
         }
-        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs)){
+        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs) || in_array(Role::ROLE_CONTENT_MANAGER, $currentUserRolesIDs)){
             return true;
         }
         else{
@@ -40,7 +40,7 @@ class UserPolicy
   }
   
    /**
-   * Определение, может ли текущий пользователь просматривать страницу создания пользователя
+   * Определение, может ли текущий пользователь просматривать страницу создания категории
    * @param  \Blog\User  $currentUser
    * @return bool
    */
@@ -50,7 +50,7 @@ class UserPolicy
         foreach($currentUser->roles as $role){
             $currentUserRolesIDs[] = $role->id;
         }
-        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs)){
+        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs) || in_array(Role::ROLE_CONTENT_MANAGER, $currentUserRolesIDs)){
             return true;
         }
         else{
@@ -59,7 +59,7 @@ class UserPolicy
   }
     
    /**
-   * Определение, может ли текущий пользователь создавать нового пользователя
+   * Определение, может ли текущий пользователь создавать новую категорию
    * @param  \Blog\User  $currentUser
    * @return bool
    */
@@ -69,7 +69,7 @@ class UserPolicy
         foreach($currentUser->roles as $role){
             $currentUserRolesIDs[] = $role->id;
         }
-        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs)){
+        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs) || in_array(Role::ROLE_CONTENT_MANAGER, $currentUserRolesIDs)){
             return true;
         }
         else{
@@ -78,18 +78,17 @@ class UserPolicy
   }
   
     /**
-   * Определение, может ли профиль просматриваться текущим пользователем
+   * Определение, может ли категория просматриваться текущим пользователем
    * @param  \Blog\User  $currentUser
-   * @param  \Blog\User  $user
    * @return bool
    */
-  public function show(User $currentUser, User $user)
+  public function show(User $currentUser)
   {
         $currentUserRolesIDs = array();
         foreach($currentUser->roles as $role){
             $currentUserRolesIDs[] = $role->id;
         }
-        if($user->id == $currentUser->id || in_array(Role::ROLE_ADMIN, $currentUserRolesIDs)){
+        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs) || in_array(Role::ROLE_CONTENT_MANAGER, $currentUserRolesIDs)){
             return true;
         }
         else{
@@ -98,18 +97,17 @@ class UserPolicy
   }
     
    /**
-   * Определение, может ли профиль редактироваться текущим пользователем
+   * Определение, может ли категория редактироваться текущим пользователем
    * @param  \Blog\User  $currentUser
-   * @param  \Blog\User  $user
    * @return bool
    */
-  public function update(User $currentUser, User $user)
+  public function update(User $currentUser)
   {
         $currentUserRolesIDs = array();
         foreach($currentUser->roles as $role){
             $currentUserRolesIDs[] = $role->id;
         }
-        if($user->id == $currentUser->id || in_array(Role::ROLE_ADMIN, $currentUserRolesIDs)){
+        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs) || in_array(Role::ROLE_CONTENT_MANAGER, $currentUserRolesIDs)){
             return true;
         }
         else{
@@ -119,7 +117,7 @@ class UserPolicy
   
       
    /**
-   * Определение, может ли текущий пользователь удалять определенного пользователя
+   * Определение, может ли текущий пользователь удалять категорию
    * @param  \Blog\User  $currentUser
    * @return bool
    */
@@ -129,7 +127,7 @@ class UserPolicy
         foreach($currentUser->roles as $role){
             $currentUserRolesIDs[] = $role->id;
         }
-        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs)){
+        if(in_array(Role::ROLE_ADMIN, $currentUserRolesIDs) || in_array(Role::ROLE_CONTENT_MANAGER, $currentUserRolesIDs)){
             return true;
         }
         else{

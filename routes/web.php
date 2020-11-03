@@ -49,6 +49,19 @@ Route::resource('/contacts/', 'ContactPageController', ['only' => [
 
 Route::post('/send-mail/', 'ContactPageController@send')->name('contact.send');
 
+Route::resource('admin/category', 'Admin\CategoryController', ['only' => [
+    'index', 'create', 'store', 'show', 'update', 'destroy'
+    ],
+    'names' => [
+        'index' => 'category.index',
+        'create' => 'category.create',
+        'store' => 'category.store',
+        'show' => 'category.admin.show',
+        'update' => 'category.update',
+        'destroy' => 'category.destroy',
+    ]
+]);
+
 Route::resource('category', 'CategoryController', ['only' => [
     'show',
     ],
@@ -57,11 +70,24 @@ Route::resource('category', 'CategoryController', ['only' => [
     ]
 ]);
 
-Route::resource('tags', 'TagController', ['only' => [
-    'show',
+Route::resource('admin/tags', 'Admin\TagController', ['only' => [
+    'index', 'create', 'store', 'show', 'update', 'destroy'
     ],
     'names' => [
-        'show' => 'tags.show'
+        'index' => 'tags.index',
+        'create' => 'tags.create',
+        'store' => 'tags.store',
+        'show' => 'tags.admin.show',
+        'update' => 'tags.update',
+        'destroy' => 'tags.destroy',
+    ]
+]);
+
+Route::resource('tags', 'TagController', ['only' => [
+    'show'
+    ],
+    'names' => [
+        'show' => 'tags.show',
     ]
 ]);
 
@@ -97,6 +123,19 @@ Route::resource('users', 'UserController', ['only' => [
 ]);
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::resource('admin/posts', 'PostController', ['only' => [
+    'index', 'update', 'show', 'destroy', 'create', 'store',
+    ],
+    'names' => [
+        'index' => 'posts.index',
+        'update' => 'posts.update',
+        'show' => 'posts.admin.show',
+        'destroy' => 'posts.destroy',
+        'create' => 'posts.create',
+        'store' => 'posts.store',
+    ]
+]);
 
 Route::get('/{urlPost}', 'PostController@show')->name('post.show');
 
