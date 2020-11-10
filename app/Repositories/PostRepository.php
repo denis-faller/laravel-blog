@@ -92,4 +92,17 @@ class PostRepository extends BaseRepository
                ->take($limit)
                ->get();
     }
+    
+        
+    /**
+    * Удаляет пост
+    * @param int $postID
+    * @return Blog\Models\Post
+    */  
+    public function destroy($postID)
+    {
+        $post = $this->find($postID);
+        $post->tags()->detach();
+        return $post->delete();
+    }
 }

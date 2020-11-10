@@ -26,7 +26,7 @@ class CategoryTest extends TestCase
             'email' => 'richsiteru@gmail.com', 
             'password' => 'password', 
         ]);
-        $response = $this->get(route('category.index'));
+        $response = $this->get(route('admin.category.index'));
         
         $response->assertStatus(200);
     }
@@ -41,7 +41,7 @@ class CategoryTest extends TestCase
             'email' => 'richsiteru@gmail.com', 
             'password' => 'password', 
         ]);
-        $response = $this->get(route('category.create'));
+        $response = $this->get(route('admin.category.create'));
         
         $response->assertStatus(200);
     }
@@ -61,13 +61,13 @@ class CategoryTest extends TestCase
         
         $categoryUrl = $this->faker->url();
         
-        $response = $this->post(route('category.store'), ['name' => $categoryName, 'url' => $categoryUrl, 'description' => $categoryUrl]);
+        $response = $this->post(route('admin.category.store'), ['name' => $categoryName, 'url' => $categoryUrl, 'description' => $categoryUrl]);
         
         $categoryService = app(CategoryService::class);
         
         $category = $categoryService->findByUrl($categoryUrl);
         
-        $response->assertLocation(route('category.admin.show', $category->id));
+        $response->assertLocation(route('admin.category.show', $category->id));
         
         $this->assertDatabaseHas('categories', ['url' => $categoryUrl]);
         
@@ -84,7 +84,7 @@ class CategoryTest extends TestCase
             'email' => 'richsiteru@gmail.com', 
             'password' => 'password', 
         ]);
-        $response = $this->get(route('category.admin.show', Category::CATEGORY_POLITIC_ID));
+        $response = $this->get(route('admin.category.show', Category::CATEGORY_POLITIC_ID));
         
         $response->assertStatus(200);
     }
@@ -104,9 +104,9 @@ class CategoryTest extends TestCase
         
         $categoryUrl = $this->faker->url();
         
-        $response = $this->post(route('category.update', Category::CATEGORY_POLITIC_ID), ['_method'=>'PUT', 'id' => Category::CATEGORY_POLITIC_ID, 'name' => $categoryName, 'url' => $categoryUrl, 'description' => $categoryUrl]);
+        $response = $this->post(route('admin.category.update', Category::CATEGORY_POLITIC_ID), ['_method'=>'PUT', 'id' => Category::CATEGORY_POLITIC_ID, 'name' => $categoryName, 'url' => $categoryUrl, 'description' => $categoryUrl]);
         
-        $response->assertLocation(route('category.admin.show', Category::CATEGORY_POLITIC_ID));
+        $response->assertLocation(route('admin.category.show', Category::CATEGORY_POLITIC_ID));
         
         $this->assertDatabaseHas('categories', ['url' => $categoryUrl]);
         
@@ -137,8 +137,8 @@ class CategoryTest extends TestCase
             'url' => $categoryUrl, 
             'description' => $categoryUrl));
         
-        $response = $this->post(route('category.destroy', $categoryCreated->id), ['_method'=>'DELETE']);
+        $response = $this->post(route('admin.category.destroy', $categoryCreated->id), ['_method'=>'DELETE']);
         
-        $response->assertLocation(route('category.index'));
+        $response->assertLocation(route('admin.category.index'));
     }
 }

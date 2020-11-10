@@ -45,7 +45,7 @@ class CategoryController extends Controller
         $title = 'Категории блога - страница '.$currentPage;
         $description = 'Все категории блога - страница '.$currentPage;
         
-        return view('categories.index', ['title' => $title, 
+        return view('admin.categories.index', ['title' => $title, 
             'description' => $description,
             'categories' => $categories,
             'paginateCategories' => $paginateCategories]);
@@ -62,7 +62,7 @@ class CategoryController extends Controller
 
         $title = 'Создание новой категории';
         $description = 'Создание новой категории';
-        return view('categories.create', ['title' => $title, 
+        return view('admin.categories.create', ['title' => $title, 
            'description' => $description]);
     }
     
@@ -79,7 +79,7 @@ class CategoryController extends Controller
         $categoryCreated = $categoryService->create(array('site_id' => Site::MAIN_SITE_ID, 'name' => $request->name, 'url' => $request->url, 'description' => $request->description));
      
         if(isset($categoryCreated->id)){
-            return redirect(route('category.admin.show', $categoryCreated->id));
+            return redirect(route('admin.category.show', $categoryCreated->id));
         }
     }
     
@@ -94,7 +94,7 @@ class CategoryController extends Controller
         
         $title = 'Страница категории '.$category->name;
         $description = 'Страница категории '.$category->name;
-        return view('categories.show', ['title' => $title, 
+        return view('admin.categories.show', ['title' => $title, 
            'description' => $description,
             'category' => $category]);
     }
@@ -113,7 +113,7 @@ class CategoryController extends Controller
         $categoryUpdated = $categoryService->update($category->id, array('name' => $request->name, 'url' => $request->url, 'description' => $request->description));
         
         if(isset($categoryUpdated->id)){
-            return redirect(route('category.admin.show', $category->id));
+            return redirect(route('admin.category.show', $category->id));
         }
     }
     
@@ -130,7 +130,7 @@ class CategoryController extends Controller
         $isDelete = $categoryService->destroy($category->id);
         
         if($isDelete){
-            return redirect(route('category.index'));
+            return redirect(route('admin.category.index'));
         }
     }
 }

@@ -25,7 +25,7 @@
   <tbody>
       @foreach($categories as $category)
     <tr>
-      <td><a href = "{{route('category.admin.show', $category->id)}}">{{$category->id}}</a></td>
+      <td><a href = "{{route('admin.category.show', $category->id)}}">{{$category->id}}</a></td>
       <td>{{$category->name}}</td>
       <td>{{$category->url}}</td>
       <td>{{$category->description}}</td>
@@ -33,7 +33,7 @@
     @endforeach
   </tbody>
 </table>
-<button  class="btn btn-primary" onclick = "window.location.href = '{{route('category.create')}}'">Создать новую категорию</button>
+<button  class="btn btn-primary" onclick = "window.location.href = '{{route('admin.category.create')}}'">Создать новую категорию</button>
   </div>
     <div class="site-section bg-white">
       <div class="container">
@@ -41,7 +41,7 @@
           <div class="col-md-12">
             <div class="custom-pagination">
                 @if(isset($paginateCategories[0]))
-                {{ $paginateCategories->links('categories.paginator') }}
+                {{ $paginateCategories->links('admin.categories.paginator') }}
                 @endif
             </div>
           </div>

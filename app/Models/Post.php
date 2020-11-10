@@ -7,9 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use Searchable;
+    //use Searchable;
+    
+    const AI_REMOVES_POST_ID = 1;
 
-    protected $fillable = array();
+    protected $fillable = [
+        'site_id', 'main_page', 'name', 'url', 'publish_time', 'preview_img', 'img', 'view_count', 'category_id', 'author_id', 'text',
+    ];
     
     /**
     * Теги поста

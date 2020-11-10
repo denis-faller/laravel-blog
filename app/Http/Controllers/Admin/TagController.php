@@ -46,7 +46,7 @@ class TagController extends Controller
         $title = 'Теги блога - страница '.$currentPage;
         $description = 'Все теги блога - страница '.$currentPage;
         
-        return view('tags.index', ['title' => $title, 
+        return view('admin.tags.index', ['title' => $title, 
            'description' => $description,
             'tags' => $tags,
             'paginateTags' => $paginateTags]);
@@ -63,7 +63,7 @@ class TagController extends Controller
 
         $title = 'Создание нового тега';
         $description = 'Создание нового тега блога';
-        return view('tags.create', ['title' => $title, 
+        return view('admin.tags.create', ['title' => $title, 
            'description' => $description]);
     }
     
@@ -80,7 +80,7 @@ class TagController extends Controller
         $tagCreated = $tagService->create(array('site_id' => Site::MAIN_SITE_ID, 'name' => $request->name, 'url' => $request->url, 'color' => $request->color));
      
         if(isset($tagCreated->id)){
-            return redirect(route('tags.admin.show', $tagCreated->id));
+            return redirect(route('admin.tags.show', $tagCreated->id));
         }
     }
     
@@ -95,7 +95,7 @@ class TagController extends Controller
         
         $title = 'Страница тега '.$tag->name;
         $description = 'Страница тега '.$tag->name;
-        return view('tags.show', ['title' => $title, 
+        return view('admin.tags.show', ['title' => $title, 
            'description' => $description,
             'tag' => $tag]);
     }
@@ -114,7 +114,7 @@ class TagController extends Controller
         $tagUpdated = $tagService->update($tag->id, array('name' => $request->name, 'url' => $request->url, 'color' => $request->color));
         
         if(isset($tagUpdated->id)){
-            return redirect(route('tags.admin.show', $tag->id));
+            return redirect(route('admin.tags.show', $tag->id));
         }
     }
     
@@ -131,7 +131,7 @@ class TagController extends Controller
         $isDelete = $tagService->destroy($tag->id);
         
         if($isDelete){
-            return redirect(route('tags.index'));
+            return redirect(route('admin.tags.index'));
         }
     }
 }

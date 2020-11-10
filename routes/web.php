@@ -53,12 +53,12 @@ Route::resource('admin/category', 'Admin\CategoryController', ['only' => [
     'index', 'create', 'store', 'show', 'update', 'destroy'
     ],
     'names' => [
-        'index' => 'category.index',
-        'create' => 'category.create',
-        'store' => 'category.store',
-        'show' => 'category.admin.show',
-        'update' => 'category.update',
-        'destroy' => 'category.destroy',
+        'index' => 'admin.category.index',
+        'create' => 'admin.category.create',
+        'store' => 'admin.category.store',
+        'show' => 'admin.category.show',
+        'update' => 'admin.category.update',
+        'destroy' => 'admin.category.destroy',
     ]
 ]);
 
@@ -74,12 +74,12 @@ Route::resource('admin/tags', 'Admin\TagController', ['only' => [
     'index', 'create', 'store', 'show', 'update', 'destroy'
     ],
     'names' => [
-        'index' => 'tags.index',
-        'create' => 'tags.create',
-        'store' => 'tags.store',
-        'show' => 'tags.admin.show',
-        'update' => 'tags.update',
-        'destroy' => 'tags.destroy',
+        'index' => 'admin.tags.index',
+        'create' => 'admin.tags.create',
+        'store' => 'admin.tags.store',
+        'show' => 'admin.tags.show',
+        'update' => 'admin.tags.update',
+        'destroy' => 'admin.tags.destroy',
     ]
 ]);
 
@@ -124,16 +124,16 @@ Route::resource('users', 'UserController', ['only' => [
 
 Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::resource('admin/posts', 'PostController', ['only' => [
+Route::resource('admin/posts', 'Admin\PostController', ['only' => [
     'index', 'update', 'show', 'destroy', 'create', 'store',
     ],
     'names' => [
-        'index' => 'posts.index',
-        'update' => 'posts.update',
-        'show' => 'posts.admin.show',
-        'destroy' => 'posts.destroy',
-        'create' => 'posts.create',
-        'store' => 'posts.store',
+        'index' => 'admin.posts.index',
+        'update' => 'admin.posts.update',
+        'show' => 'admin.posts.show',
+        'destroy' => 'admin.posts.destroy',
+        'create' => 'admin.posts.create',
+        'store' => 'admin.posts.store',
     ]
 ]);
 

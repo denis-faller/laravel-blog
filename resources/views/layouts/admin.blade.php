@@ -20,6 +20,12 @@
     <link rel="stylesheet" href="/assets/css/aos.css">
 
     <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#textarea'
+      });
+    </script>
 </head>
 
   <body>
@@ -43,9 +49,9 @@
             <nav class="site-navigation" role="navigation">
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
                 <li><a href="{{route('users.index')}}">Пользователи</a></li>
-                <li><a href="{{route('tags.index')}}">Теги</a></li>
-                <li><a href="{{route('category.index')}}">Категории</a></li>
-                <li><a href="{{route('posts.index')}}">Посты</a></li> 
+                <li><a href="{{route('admin.tags.index')}}">Теги</a></li>
+                <li><a href="{{route('admin.category.index')}}">Категории</a></li>
+                <li><a href="{{route('admin.posts.index')}}">Посты</a></li> 
                 @foreach($headerMenu as $item)
                 @if($item->url != "")
                 <li><a href="{{route('category.show', $item->url)}}">{{$item->name}}</a></li>

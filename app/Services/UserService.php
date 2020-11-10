@@ -30,15 +30,4 @@ class UserService extends BaseService
         
         return $this->repo->all()->first();
     }
-    
-    
-    /**
-    * Удаляет пользователя
-    * @param int $userID
-    * @return Blog\Models\User
-    */  
-    public function destroy($userID)
-    {
-        return $this->repo->destroy($userID);
-    }
 }

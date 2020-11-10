@@ -14,9 +14,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-         \Blog\Models\User::class => \Blog\Policies\UserPolicy::class,
-         \Blog\Models\Tag::class => \Blog\Policies\TagPolicy::class,
-         \Blog\Models\Category::class => \Blog\Policies\CategoryPolicy::class,
+        \Blog\Models\User::class => \Blog\Policies\UserPolicy::class,
+        \Blog\Models\Tag::class => \Blog\Policies\TagPolicy::class,
+        \Blog\Models\Category::class => \Blog\Policies\CategoryPolicy::class,
+        \Blog\Models\Post::class => \Blog\Policies\PostPolicy::class,
     ];
 
     /**

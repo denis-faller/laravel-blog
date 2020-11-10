@@ -14,7 +14,7 @@
     <div class="site-section bg-white">
         <div class="container">
             @include('common.errors')
-            <form action = "{{route('tags.store')}}" method = "POST">
+            <form action = "{{route('admin.category.store')}}" method = "POST">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
                     <label for="name">Название</label>
@@ -25,8 +25,8 @@
                      <input class="form-control" name = "url" type = "text">
                 </div>
                 <div class="form-group">
-                    <label for="color">Цвет</label>
-                    <input class="form-control" name = "color" type = "text">
+                    <label for="description">Описание</label>
+                     <textarea class="form-control"  name = "description"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Сохранить</button>
             </form>

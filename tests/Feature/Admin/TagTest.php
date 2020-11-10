@@ -26,7 +26,7 @@ class TagTest extends TestCase
             'email' => 'richsiteru@gmail.com', 
             'password' => 'password', 
         ]);
-        $response = $this->get(route('tags.index'));
+        $response = $this->get(route('admin.tags.index'));
         
         $response->assertStatus(200);
     }
@@ -42,7 +42,7 @@ class TagTest extends TestCase
             'email' => 'richsiteru@gmail.com', 
             'password' => 'password', 
         ]);
-        $response = $this->get(route('tags.create'));
+        $response = $this->get(route('admin.tags.create'));
         
         $response->assertStatus(200);
     }
@@ -62,13 +62,13 @@ class TagTest extends TestCase
         
         $tagUrl = $this->faker->url();
         
-        $response = $this->post(route('tags.store'), ['name' => $tagName, 'url' => $tagUrl, 'color' => $tagUrl]);
+        $response = $this->post(route('admin.tags.store'), ['name' => $tagName, 'url' => $tagUrl, 'color' => $tagUrl]);
         
         $tagService = app(TagService::class);
         
         $tag = $tagService->findByUrl($tagUrl);
         
-        $response->assertLocation(route('tags.admin.show', $tag->id));
+        $response->assertLocation(route('admin.tags.show', $tag->id));
         
         $this->assertDatabaseHas('tags', ['url' => $tagUrl]);
         
@@ -86,7 +86,7 @@ class TagTest extends TestCase
             'email' => 'richsiteru@gmail.com', 
             'password' => 'password', 
         ]);
-        $response = $this->get(route('tags.admin.show', Tag::TAG_TRAVEL_ID));
+        $response = $this->get(route('admin.tags.show', Tag::TAG_TRAVEL_ID));
         
         $response->assertStatus(200);
     }
@@ -106,9 +106,9 @@ class TagTest extends TestCase
         
         $tagUrl = $this->faker->url();
         
-        $response = $this->post(route('tags.update', Tag::TAG_TRAVEL_ID), ['_method'=>'PUT', 'id' => Tag::TAG_TRAVEL_ID, 'name' => $tagName, 'url' => $tagUrl, 'color' => $tagUrl]);
+        $response = $this->post(route('admin.tags.update', Tag::TAG_TRAVEL_ID), ['_method'=>'PUT', 'id' => Tag::TAG_TRAVEL_ID, 'name' => $tagName, 'url' => $tagUrl, 'color' => $tagUrl]);
         
-        $response->assertLocation(route('tags.admin.show', Tag::TAG_TRAVEL_ID));
+        $response->assertLocation(route('admin.tags.show', Tag::TAG_TRAVEL_ID));
         
         $this->assertDatabaseHas('tags', ['url' => $tagUrl]);
         
@@ -139,8 +139,8 @@ class TagTest extends TestCase
             'url' => $tagUrl, 
             'color' => $tagUrl));
         
-        $response = $this->post(route('tags.destroy', $tagCreated->id), ['_method'=>'DELETE']);
+        $response = $this->post(route('admin.tags.destroy', $tagCreated->id), ['_method'=>'DELETE']);
         
-        $response->assertLocation(route('tags.index'));
+        $response->assertLocation(route('admin.tags.index'));
     }
 }

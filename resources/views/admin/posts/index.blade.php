@@ -5,7 +5,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <span>Все теги сайта</span>
+            <span>Все посты сайта</span>
           </div>
         </div>
       </div>
@@ -19,29 +19,29 @@
       <th scope="col">Id</th>
       <th scope="col">Название</th>
       <th scope="col">Урл</th>
-      <th scope="col">Цвет</th>
+      <th scope="col">Время публикации</th>
     </tr>
   </thead>
   <tbody>
-      @foreach($tags as $tag)
+      @foreach($posts as $post)
     <tr>
-      <td><a href = "{{route('tags.admin.show', $tag->id)}}">{{$tag->id}}</a></td>
-      <td>{{$tag->name}}</td>
-      <td>{{$tag->url}}</td>
-      <td>{{$tag->color}}</td>
+      <td><a href = "{{route('admin.posts.show', $post->id)}}">{{$post->id}}</a></td>
+      <td>{{$post->name}}</td>
+      <td>{{$post->url}}</td>
+      <td>{{$post->publish_time}}</td>
     </tr>
     @endforeach
   </tbody>
 </table>
-<button  class="btn btn-primary" onclick = "window.location.href = '{{route('tags.create')}}'">Создать новый тег</button>
+<button  class="btn btn-primary" onclick = "window.location.href = '{{route('admin.posts.create')}}'">Создать новый пост</button>
   </div>
     <div class="site-section bg-white">
       <div class="container">
         <div class="row text-center pt-5 border-top">
           <div class="col-md-12">
             <div class="custom-pagination">
-                @if(isset($paginateTags[0]))
-                {{ $paginateTags->links('tags.paginator') }}
+                @if(isset($paginatePosts[0]))
+                {{ $paginatePosts->links('admin.posts.paginator') }}
                 @endif
             </div>
           </div>
