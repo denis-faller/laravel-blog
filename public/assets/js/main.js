@@ -262,5 +262,37 @@ jQuery(document).ready(function($) {
         $("body").on("click", ".reply", function(){
             $("#parent-id").val($(this).data("id"));
         })
+        
+        $(".post-comment").on("click", "option", function(){
+            $.ajax({
+              type: "GET",
+              dataType: "json",
+              url: "/admin/comments-posts",
+              data: {postID: $(this).val()},
+              success: function(comments){
+                  let options = "";
+                  $(comments).each(function(indx, element){
+                   options += '<option value="'+element.id+'">'+element.message+'</option>';
+                });
+                 $(".parent-comment").html(options);
+              }
+            });
+        })
+        
+        $(".post-comment-update").on("click", "option", function(){
+            $.ajax({
+              type: "GET",
+              dataType: "json",
+              url: "/admin/comments-posts-update",
+              data: {postID: $(this).val(), commentID: $("input[name = 'comment_id']").val()},
+              success: function(comments){
+                  let options = "";
+                  $(comments).each(function(indx, element){
+                   options += '<option value="'+element.id+'">'+element.message+'</option>';
+                });
+                 $(".parent-comment").html(options);
+              }
+            });
+        })
 
 });

@@ -52,6 +52,7 @@
                 <li><a href="{{route('admin.tags.index')}}">Теги</a></li>
                 <li><a href="{{route('admin.category.index')}}">Категории</a></li>
                 <li><a href="{{route('admin.posts.index')}}">Посты</a></li> 
+                <li><a href="{{route('admin.comments.index')}}">Комментарии</a></li>
                 @foreach($headerMenu as $item)
                 @if($item->url != "")
                 <li><a href="{{route('category.show', $item->url)}}">{{$item->name}}</a></li>

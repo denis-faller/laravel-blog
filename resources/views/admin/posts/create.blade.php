@@ -17,7 +17,7 @@
             <form action = "{{route('admin.posts.store')}}" method = "POST"  enctype="multipart/form-data">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
-                    <label for="name">Категория поста</label>
+                    <label for="categories">Категория поста</label>
                     <select class="form-control"  name="categories[]" size="3">
                         @foreach($categories as $category)
                         <option value="{{$category->id}}">{{$category->name}}</option>
@@ -25,7 +25,7 @@
                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="name">Теги поста</label>
+                    <label for="tags">Теги поста</label>
                     <select class="form-control"  name="tags[]" size="3" multiple>
                         @foreach($tags as $tag)
                         <option value="{{$tag->id}}">{{$tag->name}}</option>

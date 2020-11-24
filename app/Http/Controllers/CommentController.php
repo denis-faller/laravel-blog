@@ -5,6 +5,7 @@ namespace Blog\Http\Controllers;
 use Blog\Http\Requests\CommentAddRequest;
 use Blog\Services\CommentService;
 use Blog\Services\PostService;
+use Illuminate\Support\Facades\Auth;
 
 /** 
  * Контроллер для комментария
@@ -77,8 +78,12 @@ class CommentController extends Controller
     */  
     public function store(CommentAddRequest $request, CommentService $commentService, PostService $postService)
     {
+        $authorID = NULL;
+        if(isset(Auth::user()->id)){
+            $authorID = Auth::user()->id;
+        }
         $commentService->create(array(
-            'author_id' => $request->author_id, 
+            'author_id' => $authorID,
             'post_id' => $request->post_id, 
             'parent_id' => $request->parent_id, 
             'name' => $request->name, 

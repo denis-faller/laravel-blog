@@ -85,9 +85,6 @@
                  @include('common.errors')
                 <form action="{{route('comment.store')}}" method ="POST" class="p-5 bg-light">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  @if(isset($currentUser))
-                  <input type = "hidden" name = "author_id" id ="author-id" value = "{{$currentUser->id}}">
-                  @endif
                   <input type = "hidden" name = "post_id" id ="post-id" value = "{{$post->id}}">   
                   <input type = "hidden" name = "parent_id" id ="parent-id">
                   @if(!isset($currentUser))
@@ -103,6 +100,9 @@
                     <label for="website">Website</label>
                     <input name="website" type="url" class="form-control" id="website">
                   </div>
+                  @else
+                  <input type="hidden" name="name" value="">
+                  <input type = "hidden" name = "email" value = "">  
                   @endif
                   
                   <div class="form-group">

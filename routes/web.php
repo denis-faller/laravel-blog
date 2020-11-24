@@ -139,6 +139,23 @@ Route::resource('admin/posts', 'Admin\PostController', ['only' => [
 
 Route::get('/{urlPost}', 'PostController@show')->name('post.show');
 
+Route::resource('admin/comments', 'Admin\CommentController', ['only' => [
+    'index', 'update', 'show', 'destroy', 'create', 'store',
+    ],
+    'names' => [
+        'index' => 'admin.comments.index',
+        'update' => 'admin.comments.update',
+        'show' => 'admin.comments.show',
+        'destroy' => 'admin.comments.destroy',
+        'create' => 'admin.comments.create',
+        'store' => 'admin.comments.store',
+    ]
+]);
+
+Route::get('admin/comments-posts', 'Admin\CommentController@commentsOnPost')->name('admin.comments.commentsOnPost');
+
+Route::get('admin/comments-posts-update', 'Admin\CommentController@commentsOnPostAndCondition')->name('admin.comments.commentsOnPostAndCondition');
+
 Route::resource('comment', 'CommentController', ['only' => [
     'store',
     ],
