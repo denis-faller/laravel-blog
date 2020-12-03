@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Blog\Models\Site;
 
-class CreateHeaderMenuTable extends Migration
+class CreateHeaderMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateHeaderMenuTable extends Migration
      */
     public function up()
     {
-        Schema::create('header_menu', function (Blueprint $table) {
+        Schema::create('header_menus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('site_id');
             $table->foreign('site_id')->references('id')->on('sites');
@@ -26,7 +26,7 @@ class CreateHeaderMenuTable extends Migration
         });
         
         $date = Carbon\Carbon::now();
-        DB::table('header_menu')->insert([
+        DB::table('header_menus')->insert([
             ['site_id' => Site::MAIN_SITE_ID, 'name' => 'Главная', 'url' => '', 'sort' => 100, 'created_at' => $date, 'updated_at' => $date],
             ['site_id' => Site::MAIN_SITE_ID, 'name' => 'Политика', 'url' => 'politics', 'sort' => 200, 'created_at' => $date, 'updated_at' => $date],  
             ['site_id' => Site::MAIN_SITE_ID, 'name' => 'Технологии', 'url' => 'tech', 'sort' => 300, 'created_at' => $date, 'updated_at' => $date]
@@ -40,6 +40,6 @@ class CreateHeaderMenuTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('header_menu');
+        Schema::dropIfExists('header_menus');
     }
 }

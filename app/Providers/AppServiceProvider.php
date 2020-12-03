@@ -125,12 +125,13 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RoleService::class, function () {
             return new RoleService(new RoleRepository(new Role()));
         });
+
         
         $serviceSite = app(SiteService::class);
         $site = $serviceSite->find(Site::MAIN_SITE_ID);
         
         $serviceHeaderMenu = app(HeaderMenuService::class);
-        $headerMenu = $serviceHeaderMenu->all();
+        $headerMenu = $serviceHeaderMenu->getSortedMenu();
         
         $serviceFooterMenu = app(FooterMenuService::class);
         $footerMenu = $serviceFooterMenu->all();

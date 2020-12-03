@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class HeaderMenu extends Model
 {
-    protected $table = 'header_menu';
+    const ITEM_MENU_MAIN = 1;
     
-    protected $fillable = array();
+    protected $fillable = [
+        'site_id', 'name', 'url', 'sort',
+    ];
 }

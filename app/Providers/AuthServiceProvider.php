@@ -19,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
         \Blog\Models\Category::class => \Blog\Policies\CategoryPolicy::class,
         \Blog\Models\Post::class => \Blog\Policies\PostPolicy::class,
         \Blog\Models\Comment::class => \Blog\Policies\CommentPolicy::class,
+        \Blog\Models\HeaderMenu::class => \Blog\Policies\HeaderMenuPolicy::class,
     ];
 
     /**

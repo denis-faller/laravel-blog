@@ -16,6 +16,9 @@ use Blog\Http\Requests\TagRequest;
 class TagController extends Controller
 {
     /**
+use Blog\Services\TagService;
+use Blog\Http\Controllers\Controller;
+use Blog\Models\Tag;
      * Create a new controller instance.
      *
      * @return void

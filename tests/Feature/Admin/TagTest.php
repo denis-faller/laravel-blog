@@ -137,7 +137,7 @@ class TagTest extends TestCase
         $tagCreated = $tagService->create(array('site_id' => Site::MAIN_SITE_ID, 
             'name' => $tagName, 
             'url' => $tagUrl, 
-            'color' => $tagUrl));
+            'color' => ''));
         
         $response = $this->post(route('admin.tags.destroy', $tagCreated->id), ['_method'=>'DELETE']);
         

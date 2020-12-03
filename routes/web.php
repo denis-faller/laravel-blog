@@ -163,3 +163,16 @@ Route::resource('comment', 'CommentController', ['only' => [
         'store' => 'comment.store'
     ]
 ]);
+
+Route::resource('admin/header-menus', 'Admin\HeaderMenuController', ['only' => [
+    'index', 'update', 'show', 'destroy', 'create', 'store',
+    ],
+    'names' => [
+        'index' => 'admin.header.menu.index',
+        'update' => 'admin.header.menu.update',
+        'show' => 'admin.header.menu.show',
+        'destroy' => 'admin.header.menu.destroy',
+        'create' => 'admin.header.menu.create',
+        'store' => 'admin.header.menu.store',
+    ]
+]);

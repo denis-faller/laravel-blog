@@ -32,7 +32,7 @@ class CategoryController extends Controller
     */  
     public function index(Request $request, CategoryService $categoryService)
     {
-        $this->authorize('index', Category::class);
+        $this->authorize('index', Category::class);        
         
         $paginateCategories = $categoryService->paginated(9);
         
