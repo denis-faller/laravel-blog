@@ -54,6 +54,8 @@
                 <li><a href="{{route('admin.posts.index')}}">Посты</a></li> 
                 <li><a href="{{route('admin.comments.index')}}">Комментарии</a></li>
                 <li><a href="{{route('admin.header.menu.index')}}">Верхнее меню</a></li>
+                <li><a href="{{route('admin.footer.menu.index')}}">Нижнее меню</a></li>
+                <li><a href="{{route('admin.social.link.index')}}">Социальные ссылки</a></li>
                 @foreach($headerMenu as $item)
                 @if($item->url != "")
                 <li><a href="{{route('category.show', $item->url)}}">{{$item->name}}</a></li>
@@ -108,8 +110,6 @@
             @endforeach
           </div>
           <div class="col-md-4">
-            
-
             <div>
               <h3 class="footer-heading mb-4">Connect With Us</h3>
               <p>

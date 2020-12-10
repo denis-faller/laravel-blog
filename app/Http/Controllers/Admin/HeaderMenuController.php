@@ -104,7 +104,7 @@ class HeaderMenuController extends Controller
            'itemMenu' => $headerMenu]);
     }
     
-     /**
+    /**
     * Обновляет информацию о пункте меню
     * @param HeaderMenu $headerMenu
     * @param HeaderMenuRequest $request

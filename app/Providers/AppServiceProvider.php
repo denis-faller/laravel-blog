@@ -12,9 +12,9 @@ use Blog\Models\HeaderMenu;
 use Blog\Services\FooterMenuService;
 use Blog\Repositories\FooterMenuRepository;
 use Blog\Models\FooterMenu;
-use Blog\Services\SocialLinksService;
-use Blog\Repositories\SocialLinksRepository;
-use Blog\Models\SocialLinks;
+use Blog\Services\SocialLinkService;
+use Blog\Repositories\SocialLinkRepository;
+use Blog\Models\SocialLink;
 use Blog\Services\PostService;
 use Blog\Repositories\PostRepository;
 use Blog\Models\Post;
@@ -78,8 +78,8 @@ class AppServiceProvider extends ServiceProvider
             return new FooterMenuService(new FooterMenuRepository(new FooterMenu()));
         });
         
-        $this->app->singleton(SocialLinksService::class, function () {
-            return new SocialLinksService(new SocialLinksRepository(new SocialLinks()));
+        $this->app->singleton(SocialLinkService::class, function () {
+            return new SocialLinkService(new SocialLinkRepository(new SocialLink()));
         });
         
         $this->app->singleton(PostService::class, function () {
@@ -125,7 +125,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(RoleService::class, function () {
             return new RoleService(new RoleRepository(new Role()));
         });
-
         
         $serviceSite = app(SiteService::class);
         $site = $serviceSite->find(Site::MAIN_SITE_ID);
@@ -134,11 +133,11 @@ class AppServiceProvider extends ServiceProvider
         $headerMenu = $serviceHeaderMenu->getSortedMenu();
         
         $serviceFooterMenu = app(FooterMenuService::class);
-        $footerMenu = $serviceFooterMenu->all();
+        $footerMenu = $serviceFooterMenu->getSortedMenu();
         
-        $serviceSocialLinks = app(SocialLinksService::class);
-        $socialLinks = $serviceSocialLinks->all();
-
+        $serviceSocialLink = app(SocialLinkService::class);
+        $socialLinks = $serviceSocialLink->getSortedLinks();
+        
         view()->share(['site' => $site, 'headerMenu' => $headerMenu, 'footerMenu' => $footerMenu, 'socialLinks' => $socialLinks]);
     }
 }

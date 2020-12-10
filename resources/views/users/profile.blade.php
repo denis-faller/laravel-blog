@@ -38,7 +38,7 @@
                 </div>  
                 <div class="form-group">
                     <label for="email">Email пользователя</label>
-                    <input class="form-control" name = "email" type = "email" value = "{{$user->email}}"
+                    <input class="form-control" name = "email" type = "email" value = "{{$user->email}}">
                 </div>
                 <div class="form-group">
                     <label for="password">Пароль пользователя</label>
@@ -61,6 +61,5 @@
             </div>
             @endif
         </div>
-        </div>
-  </div>
+    </div>
 @endsection

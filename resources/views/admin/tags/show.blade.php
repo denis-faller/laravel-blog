@@ -24,11 +24,11 @@
                 </div>  
                 <div class="form-group">
                     <label for="url">Урл</label>
-                    <input class="form-control" name = "url" type = "text" value = "{{$tag->url}}"
+                    <input class="form-control" name = "url" type = "text" value = "{{$tag->url}}">
                 </div>
                 <div class="form-group">
                     <label for="color">Цвет</label>
-                    <input class="form-control" name = "color" type = "text" value = "{{$tag->color}}"
+                    <input class="form-control" name = "color" type = "text" value = "{{$tag->color}}">
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -42,5 +42,4 @@
             </div>
         </div>
         </div>
-  </div>
 @endsection

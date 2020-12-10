@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class FooterMenu extends Model
 {
-    protected $table = 'footer_menu';
+    const ITEM_MENU_MAIN = 1;
     
-    protected $fillable = array();
+    protected $fillable = [
+        'site_id', 'name', 'url', 'sort',
+    ];
 }

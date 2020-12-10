@@ -6,7 +6,7 @@ use Blog\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Blog\Models\Role;
 
-class HeaderMenuPolicy
+class FooterMenuPolicy
 {
     use HandlesAuthorization;
 
@@ -21,7 +21,7 @@ class HeaderMenuPolicy
     }
     
    /**
-   * Определение, может ли текущий пользователь просматривать страницу верхнего меню
+   * Определение, может ли текущий пользователь просматривать страницу нижнего меню
    * @param  \Blog\User $currentUser
    * @return bool
    */
@@ -40,7 +40,7 @@ class HeaderMenuPolicy
   }
   
    /**
-   * Определение, может ли текущий пользователь просматривать страницу создания пункта меню
+   * Определение, может ли текущий пользователь просматривать страницу создания пункта нижнего меню
    * @param  \Blog\User $currentUser
    * @return bool
    */
@@ -59,7 +59,7 @@ class HeaderMenuPolicy
   }
     
    /**
-   * Определение, может ли текущий пользователь создавать новый пункт меню
+   * Определение, может ли текущий пользователь создавать новый пункт нижнего меню
    * @param  \Blog\User $currentUser
    * @return bool
    */
@@ -78,7 +78,7 @@ class HeaderMenuPolicy
   }
   
     /**
-   * Определение, может ли пункт меню просматриваться текущим пользователем
+   * Определение, может ли пункт нижнего меню просматриваться текущим пользователем
    * @param  \Blog\User $currentUser
    * @return bool
    */
@@ -97,7 +97,7 @@ class HeaderMenuPolicy
   }
     
    /**
-   * Определение, может ли пункт редактироваться текущим пользователем
+   * Определение, может ли пункт нижнего меню редактироваться текущим пользователем
    * @param  \Blog\User  $currentUser
    * @return bool
    */
@@ -117,7 +117,7 @@ class HeaderMenuPolicy
   
       
    /**
-   * Определение, может ли текущий пользователь удалять пункт меню
+   * Определение, может ли текущий пользователь удалять пункт нижнего меню
    * @param  \Blog\User  $currentUser
    * @return bool
    */

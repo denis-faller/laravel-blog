@@ -2,15 +2,17 @@
 
 namespace Blog\Repositories;
 
-use Blog\Models\SocialLinks;
+use Blog\Models\SocialLink;
 use Blog\Repositories\Traits\Sortable;
+use Blog\Repositories\Traits\Filterable;
 
 /** 
  * Класс репозитория социальных ссылок
  */
-class SocialLinksRepository extends BaseRepository
+class SocialLinkRepository extends BaseRepository
 {
     use Sortable;
+    use Filterable;
     /**
     * Экземпляр модели сайта
     * @var SocialLinks
@@ -21,7 +23,7 @@ class SocialLinksRepository extends BaseRepository
     * Конструктор репозитория
     * @param SocialLinks $links
     */ 
-    public function __construct(SocialLinks $links)
+    public function __construct(SocialLink $links)
     {
         $this->model = $links;
     }

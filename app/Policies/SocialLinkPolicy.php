@@ -6,7 +6,7 @@ use Blog\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Blog\Models\Role;
 
-class HeaderMenuPolicy
+class SocialLinkPolicy
 {
     use HandlesAuthorization;
 
@@ -21,7 +21,7 @@ class HeaderMenuPolicy
     }
     
    /**
-   * Определение, может ли текущий пользователь просматривать страницу верхнего меню
+   * Определение, может ли текущий пользователь просматривать страницу социальных ссылок
    * @param  \Blog\User $currentUser
    * @return bool
    */
@@ -40,7 +40,7 @@ class HeaderMenuPolicy
   }
   
    /**
-   * Определение, может ли текущий пользователь просматривать страницу создания пункта меню
+   * Определение, может ли текущий пользователь просматривать страницу создания социальной ссылки
    * @param  \Blog\User $currentUser
    * @return bool
    */
@@ -59,7 +59,7 @@ class HeaderMenuPolicy
   }
     
    /**
-   * Определение, может ли текущий пользователь создавать новый пункт меню
+   * Определение, может ли текущий пользователь создавать новую социальную ссылку
    * @param  \Blog\User $currentUser
    * @return bool
    */
@@ -78,7 +78,7 @@ class HeaderMenuPolicy
   }
   
     /**
-   * Определение, может ли пункт меню просматриваться текущим пользователем
+   * Определение, может ли социальная ссылка просматриваться текущим пользователем
    * @param  \Blog\User $currentUser
    * @return bool
    */
@@ -97,7 +97,7 @@ class HeaderMenuPolicy
   }
     
    /**
-   * Определение, может ли пункт редактироваться текущим пользователем
+   * Определение, может ли социальная ссылка редактироваться текущим пользователем
    * @param  \Blog\User  $currentUser
    * @return bool
    */
@@ -117,7 +117,7 @@ class HeaderMenuPolicy
   
       
    /**
-   * Определение, может ли текущий пользователь удалять пункт меню
+   * Определение, может ли текущий пользователь удалять социальную ссылку
    * @param  \Blog\User  $currentUser
    * @return bool
    */

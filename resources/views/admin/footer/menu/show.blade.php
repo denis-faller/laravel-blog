@@ -14,7 +14,7 @@
     <div class="site-section bg-white">
         <div class="container">
             @include('common.errors')
-            <form action = "{{route('admin.header.menu.update', $itemMenu->id)}}" method = "POST">
+            <form action = "{{route('admin.footer.menu.update', $itemMenu->id)}}" method = "POST">
                 <input type="hidden" name="_method" value="PUT">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group">
@@ -29,16 +29,16 @@
                     <label for="sort">Цвет</label>
                     <input class="form-control" name = "sort" type = "text" value = "{{$itemMenu->sort}}">
                 </div>
-                <br>
-                <button type="submit" class="btn btn-primary">Сохранить</button>
-            </form>
-            <div class = "button-delete">
-                <form action = "{{route('admin.header.menu.destroy', $itemMenu->id)}}" method = "POST">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <button type="submit" class="btn btn-primary">Удалить</button>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
-            </div>
+                <div class = "button-delete">
+                    <form action = "{{route('admin.footer.menu.destroy', $itemMenu->id)}}" method = "POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <button type="submit" class="btn btn-primary">Удалить</button>
+                    </form>
+                </div>
         </div>
-        </div>
+    </div>
 @endsection

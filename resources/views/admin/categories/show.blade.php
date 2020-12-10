@@ -24,11 +24,11 @@
                 </div>  
                 <div class="form-group">
                     <label for="url">Урл</label>
-                    <input class="form-control" name = "url" type = "text" value = "{{$category->url}}"
+                    <input class="form-control" name = "url" type = "text" value = "{{$category->url}}">
                 </div>
                 <div class="form-group">
                     <label for="description">Цвет</label>
-                    <input class="form-control" name = "description" type = "text" value = "{{$category->description}}"
+                    <input class="form-control" name = "description" type = "text" value = "{{$category->description}}">
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary">Сохранить</button>
@@ -42,5 +42,4 @@
             </div>
         </div>
         </div>
-  </div>
 @endsection

@@ -176,3 +176,29 @@ Route::resource('admin/header-menus', 'Admin\HeaderMenuController', ['only' => [
         'store' => 'admin.header.menu.store',
     ]
 ]);
+
+Route::resource('admin/footer-menus', 'Admin\FooterMenuController', ['only' => [
+    'index', 'update', 'show', 'destroy', 'create', 'store',
+    ],
+    'names' => [
+        'index' => 'admin.footer.menu.index',
+        'update' => 'admin.footer.menu.update',
+        'show' => 'admin.footer.menu.show',
+        'destroy' => 'admin.footer.menu.destroy',
+        'create' => 'admin.footer.menu.create',
+        'store' => 'admin.footer.menu.store',
+    ]
+]);
+
+Route::resource('admin/social-links', 'Admin\SocialLinkController', ['only' => [
+    'index', 'update', 'show', 'destroy', 'create', 'store',
+    ],
+    'names' => [
+        'index' => 'admin.social.link.index',
+        'update' => 'admin.social.link.update',
+        'show' => 'admin.social.link.show',
+        'destroy' => 'admin.social.link.destroy',
+        'create' => 'admin.social.link.create',
+        'store' => 'admin.social.link.store',
+    ]
+]);
