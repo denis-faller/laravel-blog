@@ -7,7 +7,7 @@ use Blog\Models\Site;
 
 class CreateAboutPageTable extends Migration
 {
-    /**
+     /**
      * Run the migrations.
      *
      * @return void

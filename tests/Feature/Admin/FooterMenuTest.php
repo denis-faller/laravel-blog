@@ -72,7 +72,7 @@ class FooterMenuTest extends TestCase
         
         $response->assertLocation(route('admin.footer.menu.show', $itemMenu->id));
         
-        $this->assertDatabaseHas('footer_menus', ['url' => $itemMenu->url]);
+        $this->assertDatabaseHas('footer_menu', ['url' => $itemMenu->url]);
         
         $footerMenuService->destroy($itemMenu->id);
     }
@@ -114,7 +114,7 @@ class FooterMenuTest extends TestCase
         
         $response->assertLocation(route('admin.footer.menu.show', FooterMenu::ITEM_MENU_MAIN));
         
-        $this->assertDatabaseHas('footer_menus', ['url' => $itemMenuUrl]);
+        $this->assertDatabaseHas('footer_menu', ['url' => $itemMenuUrl]);
         
         $footerMenuService = app(FooterMenuService::class);
         

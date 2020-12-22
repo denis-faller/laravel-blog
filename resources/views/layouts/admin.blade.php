@@ -1,3 +1,4 @@
+<?php use Blog\Models\AboutPage; ?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -24,6 +25,9 @@
     <script>
       tinymce.init({
         selector: '#textarea'
+      });
+      tinymce.init({
+        selector: '.textarea'
       });
     </script>
 </head>
@@ -56,6 +60,8 @@
                 <li><a href="{{route('admin.header.menu.index')}}">Верхнее меню</a></li>
                 <li><a href="{{route('admin.footer.menu.index')}}">Нижнее меню</a></li>
                 <li><a href="{{route('admin.social.link.index')}}">Социальные ссылки</a></li>
+                <li><a href="{{route('admin.aboutpage.show', AboutPage::ABOUT_PAGE_ID)}}">Страница о нас</a></li>
+                <li><a href="{{route('admin.staff.index')}}">Сотрудники</a></li>
                 @foreach($headerMenu as $item)
                 @if($item->url != "")
                 <li><a href="{{route('category.show', $item->url)}}">{{$item->name}}</a></li>

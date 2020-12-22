@@ -108,7 +108,7 @@ class SocialLinkController extends Controller
     
     /**
     * Обновляет информацию о социальной ссылки
-    * @param SocialLink $footerMenu
+    * @param SocialLink $socialLink
     * @param SocialLinkRequest $request
     * @param SocialLinkService $socialLinkService
     * @return Illuminate\Routing\Redirector

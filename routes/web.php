@@ -14,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 // Как переименовать пространство имен - https://github.com/laravel/framework/issues/29810
 // Руководство по аутентификации - https://stackoverflow.com/questions/34545641/php-artisan-makeauth-command-is-not-defined
+// Если тесты не выполняются - попробывать php artisan optimize, php artisan cache:clear, php artisan config:clear, php artisan view:clear, php artisan route:clear. В таком порядке
+// Если используется метод resource, то передаваемый объект должен совпадать с названием модели, пример - класс HeaderMenu, объект $headerMenu
+// Если laravel не видит класс, используйте composer dumpautoload
 
 Route::resource('/', 'HomeController', ['only' => [
     'index'
@@ -200,5 +203,28 @@ Route::resource('admin/social-links', 'Admin\SocialLinkController', ['only' => [
         'destroy' => 'admin.social.link.destroy',
         'create' => 'admin.social.link.create',
         'store' => 'admin.social.link.store',
+    ]
+]);
+
+Route::resource('admin/about-page', 'Admin\AboutPageController', ['only' => [
+    'update', 'show'
+    ],
+    'names' => [
+        'update' => 'admin.aboutpage.update',
+        'show' => 'admin.aboutpage.show',
+    ]
+]);
+
+
+Route::resource('admin/staff', 'Admin\StaffController', ['only' => [
+    'index', 'update', 'show', 'destroy', 'create', 'store',
+    ],
+    'names' => [
+        'index' => 'admin.staff.index',
+        'update' => 'admin.staff.update',
+        'show' => 'admin.staff.show',
+        'destroy' => 'admin.staff.destroy',
+        'create' => 'admin.staff.create',
+        'store' => 'admin.staff.store',
     ]
 ]);

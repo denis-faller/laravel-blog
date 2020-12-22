@@ -20,9 +20,9 @@ class CreateStaffTable extends Migration
             $table->string('name', 255);
             $table->string('description', 255);
             $table->string('img', 255);
-            $table->string('facebook', 255);
-            $table->string('instagram', 255);
-            $table->string('twitter', 255);
+            $table->string('facebook', 255)->nullable();
+            $table->string('instagram', 255)->nullable();
+            $table->string('twitter', 255)->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

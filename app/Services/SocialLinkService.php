@@ -31,7 +31,7 @@ class SocialLinkService extends BaseService
     }
    
     /**
-    * Возвращает социальные постранично
+    * Возвращает социальные ссылки постранично
     * @return Blog\Models\SocialLink
     */  
     public function paginated($paginate)

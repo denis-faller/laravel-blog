@@ -69,7 +69,7 @@ class HeaderMenuTest extends TestCase
         
         $response->assertLocation(route('admin.header.menu.show', $itemMenu->id));
         
-        $this->assertDatabaseHas('header_menus', ['url' => $itemMenu->url]);
+        $this->assertDatabaseHas('header_menu', ['url' => $itemMenu->url]);
         
         $headerMenuService->destroy($itemMenu->id);
     }
@@ -111,7 +111,7 @@ class HeaderMenuTest extends TestCase
         
         $response->assertLocation(route('admin.header.menu.show', HeaderMenu::ITEM_MENU_MAIN));
         
-        $this->assertDatabaseHas('header_menus', ['url' => $itemMenuUrl]);
+        $this->assertDatabaseHas('header_menu', ['url' => $itemMenuUrl]);
         
         $headerMenuService = app(HeaderMenuService::class);
         

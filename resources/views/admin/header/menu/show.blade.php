@@ -26,7 +26,7 @@
                     <input class="form-control" name = "url" type = "text" value = "{{$itemMenu->url}}">
                 </div>
                 <div class="form-group">
-                    <label for="sort">Цвет</label>
+                    <label for="sort">Значение сортировки</label>
                     <input class="form-control" name = "sort" type = "text" value = "{{$itemMenu->sort}}">
                 </div>
                 <br>
