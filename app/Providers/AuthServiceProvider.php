@@ -24,6 +24,10 @@ class AuthServiceProvider extends ServiceProvider
         \Blog\Models\SocialLink::class => \Blog\Policies\SocialLinkPolicy::class,
         \Blog\Models\AboutPage::class => \Blog\Policies\AboutPagePolicy::class,
         \Blog\Models\Staff::class => \Blog\Policies\StaffPolicy::class,
+        \Blog\Models\ContactPage::class => \Blog\Policies\ContactPagePolicy::class,
+        \Blog\Models\Subscriber::class => \Blog\Policies\SubscriberPolicy::class,
+        \Blog\Models\Mailing::class => \Blog\Policies\MailingPolicy::class,
+        \Blog\Models\Site::class => \Blog\Policies\SitePolicy::class,
     ];
 
     /**

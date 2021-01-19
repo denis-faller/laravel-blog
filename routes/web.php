@@ -215,7 +215,6 @@ Route::resource('admin/about-page', 'Admin\AboutPageController', ['only' => [
     ]
 ]);
 
-
 Route::resource('admin/staff', 'Admin\StaffController', ['only' => [
     'index', 'update', 'show', 'destroy', 'create', 'store',
     ],
@@ -226,5 +225,49 @@ Route::resource('admin/staff', 'Admin\StaffController', ['only' => [
         'destroy' => 'admin.staff.destroy',
         'create' => 'admin.staff.create',
         'store' => 'admin.staff.store',
+    ]
+]);
+
+Route::resource('admin/contact-page', 'Admin\ContactPageController', ['only' => [
+    'update', 'show'
+    ],
+    'names' => [
+        'update' => 'admin.contactpage.update',
+        'show' => 'admin.contactpage.show',
+    ]
+]);
+
+Route::resource('admin/subscribers', 'Admin\SubscriberController', ['only' => [
+    'index', 'update', 'show', 'destroy', 'create', 'store',
+    ],
+    'names' => [
+        'index' => 'admin.subscribers.index',
+        'update' => 'admin.subscribers.update',
+        'show' => 'admin.subscribers.show',
+        'destroy' => 'admin.subscribers.destroy',
+        'create' => 'admin.subscribers.create',
+        'store' => 'admin.subscribers.store',
+    ]
+]);
+
+Route::resource('admin/mailings', 'Admin\MailingController', ['only' => [
+    'index', 'update', 'show', 'destroy', 'create', 'store',
+    ],
+    'names' => [
+        'index' => 'admin.mailings.index',
+        'update' => 'admin.mailings.update',
+        'show' => 'admin.mailings.show',
+        'destroy' => 'admin.mailings.destroy',
+        'create' => 'admin.mailings.create',
+        'store' => 'admin.mailings.store',
+    ]
+]);
+
+Route::resource('admin/site', 'Admin\SiteController', ['only' => [
+    'update', 'show'
+    ],
+    'names' => [
+        'update' => 'admin.site.update',
+        'show' => 'admin.site.show',
     ]
 ]);

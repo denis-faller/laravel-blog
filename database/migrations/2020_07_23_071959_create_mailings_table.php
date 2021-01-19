@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Blog\Models\Site;
+use Blog\Models\Post;
 
 class CreateMailingsTable extends Migration
 {
@@ -23,6 +25,15 @@ class CreateMailingsTable extends Migration
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
+        
+        $date = Carbon\Carbon::now();
+        DB::table('mailings')->insert(
+            [ 'site_id' => Site::MAIN_SITE_ID,
+              'post_id' => Post::AI_REMOVES_POST_ID,
+              'send_time' => $date,  
+              'created_at' => $date, 
+              'updated_at' => $date]
+        );
     }
 
     /**

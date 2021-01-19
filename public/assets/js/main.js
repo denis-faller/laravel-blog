@@ -294,5 +294,4 @@ jQuery(document).ready(function($) {
               }
             });
         })
-
 });

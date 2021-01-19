@@ -1,4 +1,6 @@
-<?php use Blog\Models\AboutPage; ?>
+<?php use Blog\Models\AboutPage;
+use Blog\Models\ContactPage;
+use Blog\Models\Site;?>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -62,6 +64,10 @@
                 <li><a href="{{route('admin.social.link.index')}}">Социальные ссылки</a></li>
                 <li><a href="{{route('admin.aboutpage.show', AboutPage::ABOUT_PAGE_ID)}}">Страница о нас</a></li>
                 <li><a href="{{route('admin.staff.index')}}">Сотрудники</a></li>
+                <li><a href="{{route('admin.contactpage.show', ContactPage::CONTACT_PAGE_ID)}}">Страница контактов</a></li>
+                <li><a href="{{route('admin.subscribers.index')}}">Подписчики</a></li>
+                <li><a href="{{route('admin.mailings.index')}}">Рассылки</a></li>
+                <li><a href="{{route('admin.site.show', Site::MAIN_SITE_ID)}}">Сайт</a></li>
                 @foreach($headerMenu as $item)
                 @if($item->url != "")
                 <li><a href="{{route('category.show', $item->url)}}">{{$item->name}}</a></li>

@@ -45,6 +45,9 @@ use Blog\Models\User;
 use Blog\Services\RoleService;
 use Blog\Repositories\RoleRepository;
 use Blog\Models\Role;
+use Blog\Services\MailingService;
+use Blog\Repositories\MailingRepository;
+use Blog\Models\Mailing;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -124,6 +127,10 @@ class AppServiceProvider extends ServiceProvider
         
         $this->app->singleton(RoleService::class, function () {
             return new RoleService(new RoleRepository(new Role()));
+        });
+        
+        $this->app->singleton(MailingService::class, function () {
+            return new MailingService(new MailingRepository(new Mailing()));
         });
         
         $serviceSite = app(SiteService::class);

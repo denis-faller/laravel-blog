@@ -17,4 +17,17 @@ class SiteService extends BaseService
    {
        $this->repo = $siteRepository;
    }
+   
+    /**
+    * Возвращает все сайты
+    * @return Blog\Model
+    */  
+    public function all()
+    {
+        $this->repo->setFilterBy('deleted_at');
+        $this->repo->setFilterValue(NULL); 
+        
+        return $this->repo->all();
+    }
+
 }

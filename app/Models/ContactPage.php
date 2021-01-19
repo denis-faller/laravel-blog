@@ -11,5 +11,7 @@ class ContactPage extends Model
     
     protected $table = 'contact_page';
     
-    protected $fillable = array();
+    protected $fillable = array(
+         'site_id', 'title_text', 'title_img', 'address', 'phone', 'email'
+    );
 }

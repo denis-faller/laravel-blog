@@ -3,12 +3,13 @@
 namespace Blog\Repositories;
 
 use Blog\Models\Site;
-
+use Blog\Repositories\Traits\Filterable;
 /** 
  * Класс репозитория сайтов
  */
 class SiteRepository extends BaseRepository
 {
+    use Filterable;
     /**
     * Экземпляр модели сайта
     * @var Site
