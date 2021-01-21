@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    //use Searchable;
+    use Searchable;
     
     const AI_REMOVES_POST_ID = 1;
 

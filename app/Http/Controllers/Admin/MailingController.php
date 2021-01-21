@@ -5,10 +5,12 @@ namespace Blog\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use Blog\Services\MailingService;
 use Blog\Services\PostService;
+use Blog\Services\SubscriberService;
 use Blog\Http\Controllers\Controller;
 use Blog\Models\Mailing;
 use Blog\Models\Site;
 use Blog\Http\Requests\MailingRequest;
+use Blog\Jobs\SendMailingJob;
 
 /** 
  * Контроллер для работы с рассылками
@@ -86,7 +88,7 @@ class MailingController extends Controller
         
         $postID = NULL;
         if(isset($request->posts[0])){
-            $postID = $request->posts[0];
+            $postID = intval($request->posts[0]);
         }
         
         $date = \Carbon\Carbon::now();
@@ -94,6 +96,19 @@ class MailingController extends Controller
             'site_id' => Site::MAIN_SITE_ID,
             'post_id' => $postID,
             'send_time' => $date));
+        
+        $postService = app(PostService::class);
+        
+        $post = $postService->find($postID);
+        
+        $subscriberService = app(SubscriberService::class);
+        
+        $subscribers = $subscriberService->all();
+        
+        foreach($subscribers as $subscriber){
+            $emailJob = (new SendMailingJob($subscriber->email, $post->name, $post->url, $post->text))->delay(now()->addSeconds(3));
+            dispatch($emailJob);
+        }
      
         if(isset($mailingCreated->id)){
             return redirect(route('admin.mailings.show', $mailingCreated->id));

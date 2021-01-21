@@ -127,6 +127,8 @@ class PostController extends Controller
             'category_id' => $request->categories[0], 
             'author_id' => Auth::user()->id, 
             'text' => $request->text));
+        
+        $postCreated->searchable();
      
         if(isset($postCreated->id)){
             if(isset($request->tags)){
@@ -212,6 +214,8 @@ class PostController extends Controller
             'category_id' => $request->categories[0], 
             'author_id' => $post->author_id, 
             'text' => $request->text));
+        
+        $postUpdated->searchable();
      
         if(isset($postUpdated->id)){
             if(isset($request->tags)){
@@ -232,6 +236,8 @@ class PostController extends Controller
         $this->authorize('destroy', Post::class);
         
         $isDelete = $postService->destroy($post->id);
+        
+        $post->unsearchable();
         
         if($isDelete){
             return redirect(route('admin.posts.index'));

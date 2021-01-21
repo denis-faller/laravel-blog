@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'queue' => env('SCOUT_QUEUE', false),
+    'queue' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -99,8 +99,8 @@ return [
     */
 
     'algolia' => [
-        'id' => '0OEY9Z5WVR',
-        'secret' => 'a15940ae6293c685dbc0c4bfdefe5c54',
+        'id' => '98WVGWNZT9',
+        'secret' => 'd90bbaa14e9e12984bc781a453b2cc7f',
     ],
 
 ];
